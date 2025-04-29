@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUẾ IT SPACE - Giới thiệu Dự án Cộng đồng</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            /* overflow: hidden; */ /* Removed for scrolling view */
+            font-family: 'Montserrat', sans-serif;
+            background-color: #e0e0e0; /* Light gray background for contrast between slides */
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+            margin: 20px auto; /* Center slides and add space */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Add shadow for slide effect */
+        }
+
+        /* Slide 1 Styles */
+        #slide1 { background-color: #0a192f; color: white; }
+        #slide1 .background-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.4; }
+        #slide1 .gradient-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(10, 25, 47, 0.95) 0%, rgba(46, 111, 192, 0.85) 100%); z-index: 1; }
+        #slide1 .content { position: relative; z-index: 10; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; text-align: center; }
+        #slide1 .main-title { font-size: 7rem; font-weight: 900; margin-bottom: 1rem; background: linear-gradient(90deg, #ffffff 0%, #64b5f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.2; letter-spacing: 0.05em; animation: fadeInDown 1.2s ease-out; }
+        #slide1 .subtitle { font-size: 1.8rem; font-weight: 300; max-width: 80%; margin-bottom: 3rem; line-height: 1.4; animation: fadeInUp 1.2s ease-out; }
+        #slide1 .logos-container { display: flex; justify-content: center; align-items: center; margin-top: 4rem; gap: 2rem; animation: fadeIn 2s ease-out; }
+        #slide1 .logo-placeholder { width: 100px; height: 100px; background-color: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 0.75rem; text-align: center; padding: 0.5rem; }
+        #slide1 .tech-icon { position: absolute; font-size: 3rem; opacity: 0.2; z-index: 5; color: white; }
+        #slide1 .tech-icon:nth-child(1) { top: 15%; left: 10%; animation: float 8s infinite; }
+        #slide1 .tech-icon:nth-child(2) { top: 25%; right: 15%; animation: float 9s infinite; }
+        #slide1 .tech-icon:nth-child(3) { bottom: 20%; left: 20%; animation: float 7s infinite; }
+        #slide1 .tech-icon:nth-child(4) { bottom: 25%; right: 10%; animation: float 10s infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Slide 2 Styles */
+        #slide2 { background-color: #f0f9ff; color: #0a2463; }
+        #slide2 .header { padding: 2rem 4rem; background: linear-gradient(90deg, #0a2463 0%, #1e88e5 100%); color: white; border-bottom-right-radius: 60px; }
+        #slide2 .title { font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; }
+        #slide2 .subtitle { font-size: 1.5rem; font-weight: 300; opacity: 0.9; }
+        #slide2 .content { display: flex; padding: 2rem; height: calc(100% - 160px); }
+        #slide2 .image-container { flex: 0 0 40%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 1rem; }
+        #slide2 .city-image { width: 90%; height: auto; border-radius: 12px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); object-fit: cover; max-height: 250px; }
+        #slide2 .reasons { flex: 0 0 60%; display: flex; flex-direction: column; justify-content: center; padding: 1rem 2rem; }
+        #slide2 .reason-item { display: flex; align-items: flex-start; margin-bottom: 1.5rem; background-color: white; padding: 1.25rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); transition: transform 0.3s ease; }
+        #slide2 .reason-item:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); }
+        #slide2 .icon-container { flex: 0 0 60px; height: 60px; background: linear-gradient(135deg, #0a2463 0%, #1e88e5 100%); color: white; display: flex; justify-content: center; align-items: center; border-radius: 12px; margin-right: 1rem; font-size: 1.75rem; }
+        #slide2 .reason-text { flex: 1; }
+        #slide2 .reason-title { font-weight: 600; font-size: 1.25rem; margin-bottom: 0.5rem; color: #0a2463; }
+        #slide2 .reason-desc { font-size: 0.95rem; line-height: 1.4; color: #4a4a4a; }
+        #slide2 .highlight { color: #1e88e5; font-weight: 600; }
+
+        /* Slide 3 Styles */
+        #slide3 { background: linear-gradient(135deg, #f5f7fa 0%, #e4f1fe 100%); color: #333; }
+        #slide3 .slide-header { background: linear-gradient(90deg, #0a2463 0%, #1e88e5 100%); padding: 1.5rem 4rem; color: white; position: relative; overflow: hidden; }
+        #slide3 .slide-title { font-size: 2.5rem; font-weight: 700; position: relative; z-index: 2; }
+        #slide3 .slide-body { display: flex; padding: 2rem; height: calc(100% - 100px); }
+        #slide3 .left-section { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 0 2rem; }
+        #slide3 .right-section { flex: 1; display: flex; flex-direction: column; padding-left: 2rem; }
+        #slide3 .what-is { background-color: white; border-radius: 16px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); position: relative; overflow: hidden; }
+        #slide3 .what-is-title { font-size: 2rem; font-weight: 700; margin-bottom: 1.5rem; color: #0a2463; }
+        #slide3 .what-is-content { font-size: 1.1rem; line-height: 1.6; position: relative; z-index: 2; }
+        #slide3 .info-box { background-color: white; border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); display: flex; align-items: flex-start; transition: transform 0.3s ease; }
+        #slide3 .info-box:hover { transform: translateY(-5px); }
+        #slide3 .info-icon { background: linear-gradient(135deg, #0a2463 0%, #1e88e5 100%); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; margin-right: 1.5rem; flex-shrink: 0; }
+        #slide3 .info-content { flex: 1; }
+        #slide3 .info-title { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.75rem; color: #0a2463; }
+        #slide3 .info-desc { font-size: 1rem; line-height: 1.5; color: #555; }
+        #slide3 .highlight { color: #1e88e5; font-weight: 600; }
+        #slide3 .pattern { position: absolute; bottom: -20px; right: -20px; width: 150px; height: 150px; background-image: radial-gradient(#1e88e5 2px, transparent 2px); background-size: 15px 15px; opacity: 0.15; z-index: 1; }
+        #slide3 .decoration { position: absolute; top: 15px; right: 15px; font-size: 5rem; opacity: 0.1; color: #0a2463; }
+
+        /* Slide 4 Styles */
+        #slide4 { background: linear-gradient(135deg, #f5f7fa 0%, #e4f1fe 100%); }
+        #slide4 .header { background: linear-gradient(90deg, #0a2463 0%, #1e88e5 100%); padding: 2rem 4rem; color: white; position: relative; }
+        #slide4 .header h1 { font-size: 2.5rem; font-weight: 700; margin: 0; }
+        #slide4 .header p { font-size: 1.2rem; opacity: 0.9; margin-top: 0.5rem; }
+        #slide4 .content { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; padding: 2rem 4rem; }
+        #slide4 .activity-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; display: flex; flex-direction: column; height: 100%; }
+        #slide4 .activity-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); }
+        #slide4 .card-header { background: linear-gradient(135deg, #0a2463 0%, #1e88e5 100%); padding: 1.5rem; display: flex; align-items: center; }
+        #slide4 .card-icon { width: 60px; height: 60px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.8rem; color: white; margin-right: 1.5rem; }
+        #slide4 .card-title { color: white; font-size: 1.5rem; font-weight: 600; }
+        #slide4 .card-body { padding: 1.5rem; flex: 1; }
+        #slide4 .card-description { color: #555; font-size: 1rem; line-height: 1.6; }
+        #slide4 .highlight { color: #1e88e5; font-weight: 600; }
+        #slide4 .badge { display: inline-block; background: #e3f2fd; color: #1e88e5; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500; margin-top: 1rem; margin-right: 0.5rem; }
+        #slide4 .footer-note { text-align: center; margin-top: 1rem; font-style: italic; color: #666; padding: 0 4rem; }
+
+        /* Slide 5 Styles */
+        #slide5 { background-color: #ffffff; color: #0a2463; }
+        #slide5 .header { padding: 2rem 4rem; background: linear-gradient(90deg, #0a2463 0%, #1e88e5 100%); color: white; border-bottom-left-radius: 60px; }
+        #slide5 .title { font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; }
+        #slide5 .subtitle { font-size: 1.5rem; font-weight: 300; opacity: 0.9; }
+        #slide5 .content { display: flex; padding: 2rem 4rem; align-items: center; }
+        #slide5 .goals-list { flex: 2; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        #slide5 .goal-item { display: flex; align-items: center; background-color: #f0f9ff; padding: 1.25rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); transition: all 0.3s ease; border-left: 5px solid #1e88e5; }
+        #slide5 .goal-item:hover { transform: scale(1.03); box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); }
+        #slide5 .goal-icon { font-size: 2rem; color: #1e88e5; margin-right: 1rem; width: 50px; text-align: center; }
+        #slide5 .goal-text { font-size: 1.1rem; line-height: 1.5; color: #0a2463; font-weight: 600; }
+        #slide5 .image-container { flex: 1; padding-left: 3rem; display: flex; justify-content: center; align-items: center; }
+        #slide5 .goal-image { max-width: 100%; height: auto; border-radius: 16px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
+        #slide5 .highlight { color: #1e88e5; font-weight: 700; }
+
+        /* Slide 6 Styles */
+        #slide6 { background: linear-gradient(135deg, #0a192f 0%, #1d3a6e 100%); color: white; }
+        #slide6 .content { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 4rem; height: 100%; position: relative; z-index: 10; }
+        #slide6 .title { font-size: 3.5rem; font-weight: 700; margin-bottom: 2rem; }
+        #slide6 .vision-item { margin-bottom: 2rem; max-width: 800px; background: rgba(255, 255, 255, 0.08); padding: 1.5rem; border-radius: 12px; backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        #slide6 .vision-icon { font-size: 2.5rem; color: #64b5f6; margin-bottom: 1rem; }
+        #slide6 .vision-text { font-size: 1.2rem; line-height: 1.6; font-weight: 300; }
+        #slide6 .highlight { font-weight: 600; color: #90caf9; }
+        #slide6 .background-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('https://images.unsplash.com/photo-1518770660439-4636190af475?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MXxzZWFyY2h8Mnx8dGVjaG5vbG9neSUyMGJhY2tncm91bmR8fDB8fHx8MTY3ODg4NjAwNQ&ixlib=rb-4.0.3&q=80&w=1080') no-repeat center center; background-size: cover; opacity: 0.15; z-index: 1; }
+
+        /* Slide 7 Styles */
+        #slide7 { background: #f8f9fa; color: #343a40; }
+        #slide7 .header { padding: 2rem 4rem; background: linear-gradient(90deg, #6c757d 0%, #adb5bd 100%); color: white; border-bottom-right-radius: 60px; }
+        #slide7 .title { font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; }
+        #slide7 .content { padding: 3rem 4rem; text-align: center; }
+        #slide7 .partners-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; margin-bottom: 3rem; align-items: center; }
+        #slide7 .partner-logo { display: flex; flex-direction: column; align-items: center; justify-content: center; background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07); transition: transform 0.3s ease; height: 180px; }
+        #slide7 .partner-logo:hover { transform: translateY(-8px); }
+        #slide7 .partner-logo img { max-width: 100px; max-height: 80px; object-fit: contain; margin-bottom: 1rem; }
+        #slide7 .partner-logo span { font-weight: 600; color: #495057; font-size: 0.9rem; }
+        #slide7 .collaboration-text { font-size: 1.3rem; font-weight: 300; color: #495057; max-width: 900px; margin: 0 auto; line-height: 1.7; }
+        #slide7 .highlight { font-weight: 600; color: #0a2463; }
+        /* Placeholder logo style */
+        .logo-placeholder-generic { width: 100px; height: 80px; background-color: #e9ecef; border-radius: 8px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; color: #adb5bd; margin-bottom: 1rem; }
+
+        /* Slide 8 Styles */
+        #slide8 { background: linear-gradient(135deg, #eef2f7 0%, #ffffff 100%); color: #333; }
+        #slide8 .header { background: linear-gradient(90deg, #0a2463 0%, #1e88e5 100%); padding: 1.5rem 4rem; color: white; }
+        #slide8 .title { font-size: 2.5rem; font-weight: 700; }
+        #slide8 .content { display: flex; justify-content: space-around; align-items: center; padding: 4rem; }
+        #slide8 .team-member { text-align: center; background: white; padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); width: 40%; transition: transform 0.3s ease; }
+        #slide8 .team-member:hover { transform: translateY(-10px); }
+        #slide8 .member-photo { width: 180px; height: 180px; border-radius: 50%; margin: 0 auto 1.5rem auto; object-fit: cover; border: 5px solid #1e88e5; }
+        #slide8 .member-name { font-size: 1.8rem; font-weight: 700; color: #0a2463; margin-bottom: 0.5rem; }
+        #slide8 .member-title { font-size: 1.1rem; font-weight: 600; color: #1e88e5; margin-bottom: 1rem; }
+        #slide8 .member-desc { font-size: 1rem; color: #555; line-height: 1.5; }
+        #slide8 .highlight { font-weight: 600; }
+        /* Placeholder portrait style */
+        .portrait-placeholder { width: 180px; height: 180px; border-radius: 50%; margin: 0 auto 1.5rem auto; background-color: #ced4da; display: flex; justify-content: center; align-items: center; font-size: 4rem; color: #6c757d; border: 5px solid #1e88e5; }
+
+        /* Slide 9 Styles */
+        #slide9 { background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MXxzZWFyY2h8NHx8Y29tbXVuaXR5fGVufDB8fHx8MTY3ODg4NjQwOA&ixlib=rb-4.0.3&q=80&w=1080') no-repeat center center; background-size: cover; }
+        #slide9 .overlay { background: rgba(10, 36, 99, 0.85); width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; }
+        #slide9 .content { position: relative; z-index: 10; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 3rem; height: 100%; }
+        #slide9 .title { font-size: 3.5rem; font-weight: 700; margin-bottom: 2rem; }
+        #slide9 .cta-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; width: 100%; max-width: 1100px; margin-bottom: 2.5rem; }
+        #slide9 .cta-card { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); padding: 2rem; border-radius: 12px; backdrop-filter: blur(10px); transition: background 0.3s ease; }
+        #slide9 .cta-card:hover { background: rgba(255, 255, 255, 0.2); }
+        #slide9 .cta-target { font-size: 1.3rem; font-weight: 600; color: #90caf9; margin-bottom: 1rem; }
+        #slide9 .cta-text { font-size: 1.1rem; line-height: 1.6; margin-bottom: 1.5rem; }
+        #slide9 .cta-button { display: inline-block; background: #1e88e5; color: white; padding: 0.8rem 1.8rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: background 0.3s ease; }
+        #slide9 .cta-button:hover { background: #1565c0; }
+        #slide9 .contact-info { margin-top: 2rem; font-size: 1rem; }
+        #slide9 .contact-info a { color: #90caf9; text-decoration: none; margin: 0 0.75rem; font-weight: 500; }
+        #slide9 .contact-info a:hover { text-decoration: underline; }
+
+        /* Slide 10 Styles */
+        #slide10 { background: linear-gradient(135deg, #f0f9ff 0%, #e3f2fd 100%); color: #0a2463; }
+        #slide10 .content { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 4rem; height: 100%; }
+        #slide10 .qa-icon { font-size: 8rem; color: #1e88e5; margin-bottom: 2rem; animation: bounce 2s infinite; }
+        #slide10 .title { font-size: 4rem; font-weight: 700; margin-bottom: 1rem; }
+        #slide10 .subtitle { font-size: 1.5rem; font-weight: 300; color: #555; }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-30px); } 60% { transform: translateY(-15px); } }
+
+        /* Slide 11 Styles */
+        #slide11 { background-color: #0a192f; color: white; }
+        #slide11 .content { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 4rem; height: 100%; position: relative; z-index: 10; }
+        #slide11 .gradient-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(10, 25, 47, 0.9) 0%, rgba(29, 58, 110, 0.8) 100%); z-index: 1; }
+        #slide11 .thank-you-text { font-size: 4.5rem; font-weight: 700; margin-bottom: 2rem; background: linear-gradient(90deg, #ffffff 0%, #90caf9 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        #slide11 .message { font-size: 1.3rem; font-weight: 300; margin-bottom: 3rem; max-width: 700px; line-height: 1.6; }
+        #slide11 .contact-info { font-size: 1.1rem; margin-bottom: 3rem; }
+        #slide11 .contact-info i { margin-right: 0.5rem; color: #64b5f6; }
+        #slide11 .contact-info a { color: #90caf9; text-decoration: none; margin: 0 1rem; }
+        #slide11 .contact-info a:hover { text-decoration: underline; }
+        #slide11 .final-logo { width: 150px; height: auto; opacity: 0.8; } /* Placeholder for logo */
+        #slide11 .logo-placeholder-final { width: 150px; height: 150px; background-color: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1rem; text-align: center; padding: 1rem; opacity: 0.8; }
+    </style>
+</head>
+<body>
+
+    <!-- Slide 1: Trang Tiêu đề -->
+    <div id="slide1" class="slide">
+        <img src="https://thumbs.dreamstime.com/b/futuristic-cityscape-featuring-towering-skyscrapers-sleek-high-tech-style-center-large-glowing-orb-resembling-bitcoin-361407685.jpg" alt="Huế Technology Skyline" class="background-image">
+        <div class="gradient-overlay"></div>
+
+        <div class="tech-icon"><i class="fas fa-code"></i></div>
+        <div class="tech-icon"><i class="fas fa-database"></i></div>
+        <div class="tech-icon"><i class="fas fa-laptop-code"></i></div>
+        <div class="tech-icon"><i class="fas fa-network-wired"></i></div>
+
+        <div class="content">
+            <h1 class="main-title">HUẾ IT SPACE</h1>
+            <h2 class="subtitle">Kiến tạo Không gian Kết nối & Phát triển Cộng đồng Công nghệ Thông tin tại Huế</h2>
+
+            <div class="logos-container">
+                <div class="logo-placeholder">JCI Huế</div>
+                <div class="logo-placeholder">Huế Innovation Hub</div>
+                <div class="logo-placeholder">SatoriWave AI</div>
+                <div class="logo-placeholder">Ment Media And Tech</div>
+            </div>
+        </div>
+    </div>
+    <!-- Slide 1 End -->
+
+    <!-- Slide 2: Bối cảnh & Nhu cầu tại Huế -->
+    <div id="slide2" class="slide">
+        <div class="header">
+            <h1 class="title">Vì sao Huế IT Space ra đời?</h1>
+            <p class="subtitle">Bối cảnh & Nhu cầu thực tiễn</p>
+        </div>
+
+        <div class="content">
+            <div class="image-container">
+                <img src="https://cdnen.thesaigontimes.vn/wp-content/uploads/2024/09/z3960637851352d825572bab99b2d6eaab13853e5f6da7-167152768772129833403.jpg" alt="Thành phố Huế" class="city-image">
+                <img src="https://www.codemotion.com/magazine/wp-content/uploads/2023/07/Collaborative-Coding.-A-developer-team-working-together.-min.jpg" alt="Cộng đồng IT" class="city-image mt-4">
+            </div>
+
+            <div class="reasons">
+                <div class="reason-item">
+                    <div class="icon-container">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="reason-text">
+                        <h3 class="reason-title">Thiếu kết nối thực tế</h3>
+                        <p class="reason-desc">Nhu cầu <span class="highlight">gắn kết hiệu quả</span> giữa sinh viên CNTT và các chuyên gia, doanh nghiệp tại Huế chưa được đáp ứng đầy đủ.</p>
+                    </div>
+                </div>
+
+                <div class="reason-item">
+                    <div class="icon-container">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="reason-text">
+                        <h3 class="reason-title">Tiềm năng chưa khai phá</h3>
+                        <p class="reason-desc">Huế có <span class="highlight">tiềm năng phát triển mạnh mẽ</span> về ngành CNTT nhưng còn thiếu hệ sinh thái và động lực phát triển.</p>
+                    </div>
+                </div>
+
+                <div class="reason-item">
+                    <div class="icon-container">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="reason-text">
+                        <h3 class="reason-title">Khát vọng nâng cao kỹ năng</h3>
+                        <p class="reason-desc">Thế hệ lập trình viên trẻ cần <span class="highlight">kỹ năng thực chiến</span>, tư duy đổi mới và cơ hội nghề nghiệp thực tế.</p>
+                    </div>
+                </div>
+
+                <div class="reason-item">
+                    <div class="icon-container">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="reason-text">
+                        <h3 class="reason-title">Thiếu không gian cộng đồng</h3>
+                        <p class="reason-desc">Sự cần thiết của một <span class="highlight">không gian chung</span> để học hỏi, chia sẻ và phát triển cộng đồng công nghệ tại Huế.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Slide 2 End -->
+
+    <!-- Slide 3: Giới thiệu Tổng quan về Huế IT Space -->
+    <div id="slide3" class="slide">
+        <div class="slide-header">
+            <h1 class="slide-title">Huế IT Space là gì?</h1>
+        </div>
+
+        <div class="slide-body">
+            <div class="left-section">
+                <div class="what-is">
+                    <i class="fas fa-laptop-code decoration"></i>
+                    <h2 class="what-is-title">Huế IT Space</h2>
+                    <div class="what-is-content">
+                        <p class="mb-4">Là <span class="highlight">dự án cộng đồng tiên phong</span>, được khởi xướng nhằm <span class="highlight">kiến tạo một không gian kết nối động lực</span> cho cộng đồng CNTT tại Huế.</p>
+                        <p>Chúng tôi mang đến môi trường giao lưu, học tập và phát triển chuyên môn dành cho <span class="highlight">tất cả những người đam mê công nghệ thông tin</span> tại Huế.</p>
+                    </div>
+                    <div class="pattern"></div>
+                </div>
+
+                <img src="https://rock-the-prototype.com/wp-content/uploads/2023/01/Coden-im-Team-Warum-gemeinsam-programmieren-so-effektiv-ist_hochaufloesend_RTP.jpg" alt="Cộng đồng lập trình" class="rounded-xl shadow-lg" style="height: 220px; object-fit: cover;">
+            </div>
+
+            <div class="right-section">
+                <div class="info-box">
+                    <div class="info-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3 class="info-title">Sứ mệnh</h3>
+                        <p class="info-desc">Trở thành <span class="highlight">cầu nối vững chắc</span> giữa chuyên gia/lập trình viên giàu kinh nghiệm và sinh viên/người trẻ đam mê công nghệ.</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3 class="info-title">Cách tiếp cận</h3>
+                        <p class="info-desc">Thông qua <span class="highlight">chuỗi hoạt động đa dạng và thực tiễn</span>, tập trung vào đào tạo thực hành, mentoring 1:1, cuộc thi, và dự án thực tế với doanh nghiệp.</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3 class="info-title">Giá trị cốt lõi</h3>
+                        <p class="info-desc">Phát triển <span class="highlight">tri thức mở</span>, <span class="highlight">đổi mới sáng tạo</span>, và <span class="highlight">tinh thần cộng đồng</span> trong lĩnh vực công nghệ.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Slide 3 End -->
+
+    <!-- Slide 4: Các Hoạt động Trọng tâm -->
+    <div id="slide4" class="slide">
+        <div class="header">
+            <h1>Huế IT Space Mang đến những gì?</h1>
+            <p>Các hoạt động trọng tâm xây dựng cộng đồng</p>
+        </div>
+
+        <div class="content">
+            <!-- Đào tạo Chuyên sâu -->
+            <div class="activity-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="card-title">Đào tạo Chuyên sâu</div>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        Cập nhật <span class="highlight">kiến thức</span> và <span class="highlight">kỹ năng lập trình</span> theo xu hướng mới nhất, tập trung vào ứng dụng thực tế và nhu cầu thị trường.
+                    </p>
+                    <div>
+                        <span class="badge"><i class="fas fa-code mr-1"></i> Web Development</span>
+                        <span class="badge"><i class="fas fa-robot mr-1"></i> AI</span>
+                        <span class="badge"><i class="fas fa-mobile-alt mr-1"></i> Mobile</span>
+                        <span class="badge"><i class="fas fa-database mr-1"></i> Data Science</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cố vấn Chuyên môn -->
+            <div class="activity-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="card-title">Cố vấn Chuyên môn</div>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        Kết nối <span class="highlight">1:1 với chuyên gia</span> để định hướng nghề nghiệp, giải đáp thắc mắc và phát triển kỹ năng cá nhân theo lộ trình chuyên biệt.
+                    </p>
+                    <div>
+                        <span class="badge"><i class="fas fa-comments mr-1"></i> Tư vấn 1:1</span>
+                        <span class="badge"><i class="fas fa-road mr-1"></i> Lộ trình nghề nghiệp</span>
+                        <span class="badge"><i class="fas fa-hands-helping mr-1"></i> Hỗ trợ cá nhân</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cuộc thi & Sân chơi Công nghệ -->
+            <div class="activity-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="card-title">Cuộc thi & Sân chơi Công nghệ</div>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        Tổ chức <span class="highlight">Hackathons</span>, <span class="highlight">Coding Challenges</span>, và các sự kiện trình diễn sản phẩm để kích thích sáng tạo và tạo cơ hội giao lưu, cọ xát.
+                    </p>
+                    <div>
+                        <span class="badge"><i class="fas fa-laptop-code mr-1"></i> Hackathons</span>
+                        <span class="badge"><i class="fas fa-puzzle-piece mr-1"></i> Coding Challenges</span>
+                        <span class="badge"><i class="fas fa-project-diagram mr-1"></i> Showcase</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Triển khai Dự án Thực tế -->
+            <div class="activity-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="card-title">Triển khai Dự án Thực tế</div>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        Cơ hội tham gia vào các <span class="highlight">dự án IT của doanh nghiệp</span> để tích lũy kinh nghiệm làm việc "thật" và xây dựng portfolio chuyên nghiệp.
+                    </p>
+                    <div>
+                        <span class="badge"><i class="fas fa-building mr-1"></i> Dự án doanh nghiệp</span>
+                        <span class="badge"><i class="fas fa-tasks mr-1"></i> Quy trình chuyên nghiệp</span>
+                        <span class="badge"><i class="fas fa-id-card mr-1"></i> Portfolio thực tế</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            Tất cả hoạt động đều hướng đến xây dựng một hệ sinh thái công nghệ bền vững và năng động tại Huế
+        </div>
+    </div>
+    <!-- Slide 4 End -->
+
+    <!-- Slide 5: Mục tiêu Phát triển của Dự án -->
+    <div id="slide5" class="slide">
+        <div class="header">
+            <h1 class="title">Chúng tôi Hướng đến điều gì?</h1>
+            <p class="subtitle">Mục tiêu Phát triển của Dự án</p>
+        </div>
+        <div class="content">
+            <div class="goals-list">
+                <div class="goal-item">
+                    <div class="goal-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="goal-text">Nâng cao <span class="highlight">năng lực chuyên môn</span> & tư duy thực chiến.</div>
+                </div>
+                <div class="goal-item">
+                    <div class="goal-icon"><i class="fas fa-network-wired"></i></div>
+                    <div class="goal-text">Xây dựng <span class="highlight">mạng lưới kết nối</span> giá trị: Sinh viên - Chuyên gia - Doanh nghiệp.</div>
+                </div>
+                 <div class="goal-item">
+                    <div class="goal-icon"><i class="fas fa-lightbulb"></i></div>
+                    <div class="goal-text">Khơi dậy tinh thần <span class="highlight">sáng tạo, học hỏi</span> và khởi nghiệp công nghệ.</div>
+                </div>
+                 <div class="goal-item">
+                    <div class="goal-icon"><i class="fas fa-users-cog"></i></div>
+                    <div class="goal-text">Hình thành các <span class="highlight">đội nhóm lập trình nòng cốt</span>, sẵn sàng cho dự án IT.</div>
+                </div>
+                 <div class="goal-item">
+                    <div class="goal-icon"><i class="fas fa-seedling"></i></div>
+                    <div class="goal-text">Góp phần <span class="highlight">phát triển hệ sinh thái</span> công nghệ chung của Huế.</div>
+                </div>
+                 <div class="goal-item">
+                    <div class="goal-icon"><i class="fas fa-hands-helping"></i></div>
+                    <div class="goal-text">Tạo <span class="highlight">cơ hội thực tập và việc làm</span> chất lượng cho sinh viên IT.</div>
+                </div>
+            </div>
+            <div class="image-container">
+                <!-- Image related to goals/development -->
+                <img src="https://img.freepik.com/premium-photo/environmental-technology-concept-sustainable-development-goals-sdgs_984218-1701.jpg?w=996" alt="Mục tiêu phát triển" class="goal-image">
+            </div>
+        </div>
+    </div>
+    <!-- Slide 5 End -->
+
+    <!-- Slide 6: Tầm nhìn Dài hạn -->
+    <div id="slide6" class="slide">
+        <div class="background-overlay"></div>
+        <div class="content">
+            <h1 class="title">Tầm nhìn của Huế IT Space</h1>
+            <div class="vision-item">
+                <div class="vision-icon"><i class="fas fa-rocket"></i></div>
+                <p class="vision-text">Trở thành <span class="highlight">nền tảng ươm mầm và kết nối hàng đầu</span> cho cộng đồng lập trình tại Huế.</p>
+            </div>
+            <div class="vision-item">
+                 <div class="vision-icon"><i class="fas fa-project-diagram"></i></div>
+                <p class="vision-text">Xây dựng một <span class="highlight">hệ sinh thái công nghệ bền vững</span>, nơi tri thức, đổi mới và tinh thần cộng đồng cùng cộng hưởng phát triển.</p>
+            </div>
+            <div class="vision-item">
+                 <div class="vision-icon"><i class="fas fa-city"></i></div>
+                <p class="vision-text">Góp phần tích cực vào <span class="highlight">quá trình chuyển đổi số</span> của tỉnh Thừa Thiên Huế.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Slide 6 End -->
+
+    <!-- Slide 7: Đơn vị Đồng sáng lập & Đối tác Chiến lược -->
+    <div id="slide7" class="slide">
+        <div class="header">
+            <h1 class="title">Đồng hành cùng Huế IT Space</h1>
+        </div>
+        <div class="content">
+            <div class="partners-grid">
+                <div class="partner-logo">
+                    <!-- Placeholder for JCI Hue Logo -->
+                    <div class="logo-placeholder-generic"><i class="fas fa-users"></i></div>
+                    <span>JCI Huế</span>
+                </div>
+                <div class="partner-logo">
+                    <!-- Placeholder for Hue Innovation Hub Logo -->
+                     <div class="logo-placeholder-generic"><i class="fas fa-lightbulb"></i></div>
+                    <span>Huế Innovation Hub</span>
+                </div>
+                <div class="partner-logo">
+                    <!-- Placeholder for SatoriWave AI Logo -->
+                     <div class="logo-placeholder-generic"><i class="fas fa-brain"></i></div>
+                    <span>SatoriWave AI</span>
+                </div>
+                <div class="partner-logo">
+                    <!-- Placeholder for Ment Media And Tech Logo -->
+                     <div class="logo-placeholder-generic"><i class="fas fa-desktop"></i></div>
+                    <span>Ment Media And Tech</span>
+                </div>
+            </div>
+            <p class="collaboration-text">
+                "Sự hợp tác dựa trên <span class="highlight">khát vọng chung</span> vì sự phát triển của <span class="highlight">hệ sinh thái công nghệ</span> tại Huế."
+            </p>
+        </div>
+    </div>
+    <!-- Slide 7 End -->
+
+    <!-- Slide 8: Đội ngũ Điều hành -->
+    <div id="slide8" class="slide">
+        <div class="header">
+            <h1 class="title">Ban Điều hành Dự án</h1>
+        </div>
+        <div class="content">
+            <div class="team-member">
+                <!-- Placeholder for Truong Van Quoc Portrait -->
+                <div class="portrait-placeholder"><i class="fas fa-user"></i></div>
+                <h2 class="member-name">Ông Trương Văn Quốc</h2>
+                <p class="member-title">Trưởng dự án</p>
+                <p class="member-desc"><span class="highlight">CEO SatoriWave AI</span> - Với kinh nghiệm và tâm huyết trong lĩnh vực AI và phát triển cộng đồng.</p>
+            </div>
+            <div class="team-member">
+                <!-- Placeholder for Nguyen Van Sach Portrait -->
+                 <div class="portrait-placeholder"><i class="fas fa-user"></i></div>
+                <h2 class="member-name">Ông Nguyễn Văn Sách</h2>
+                <p class="member-title">Phó dự án</p>
+                <p class="member-desc"><span class="highlight">CEO Ment Media And Tech</span> - Chuyên gia về truyền thông, công nghệ và kết nối doanh nghiệp.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Slide 8 End -->
+
+    <!-- Slide 9: Lời kêu gọi Hành động (Call to Action) -->
+    <div id="slide9" class="slide">
+        <div class="overlay"></div>
+        <div class="content">
+            <h1 class="title">Hãy Tham gia & Đồng hành cùng Huế IT Space!</h1>
+            <div class="cta-container">
+                <div class="cta-card">
+                    <h3 class="cta-target">Dành cho Sinh viên</h3>
+                    <p class="cta-text">Gia nhập cộng đồng Huế IT Space để học hỏi, phát triển kỹ năng và mở rộng cơ hội nghề nghiệp!</p>
+                    <a href="#" class="cta-button"><i class="fas fa-user-graduate mr-2"></i> Tìm hiểu thêm</a>
+                </div>
+                <div class="cta-card">
+                    <h3 class="cta-target">Dành cho Chuyên gia/Mentor</h3>
+                    <p class="cta-text">Chia sẻ kinh nghiệm, dẫn dắt thế hệ trẻ và cùng xây dựng cộng đồng IT Huế vững mạnh!</p>
+                     <a href="#" class="cta-button"><i class="fas fa-chalkboard-teacher mr-2"></i> Đăng ký Mentor</a>
+                </div>
+                 <div class="cta-card">
+                    <h3 class="cta-target">Dành cho Doanh nghiệp/Đối tác</h3>
+                    <p class="cta-text">Hợp tác triển khai dự án, tìm kiếm nhân tài và góp phần phát triển hệ sinh thái công nghệ địa phương!</p>
+                     <a href="#" class="cta-button"><i class="fas fa-handshake mr-2"></i> Liên hệ Hợp tác</a>
+                </div>
+            </div>
+             <div class="contact-info">
+                <a href="#"><i class="fab fa-facebook-square"></i> Fanpage</a> |
+                <a href="#"><i class="fas fa-envelope"></i> Email</a> |
+                <a href="#"><i class="fas fa-phone"></i> Hotline</a>
+            </div>
+        </div>
+    </div>
+    <!-- Slide 9 End -->
+
+    <!-- Slide 10: Hỏi & Đáp (Q&A) -->
+    <div id="slide10" class="slide">
+        <div class="content">
+            <div class="qa-icon">
+                <i class="fas fa-comments"></i>
+            </div>
+            <h1 class="title">Hỏi & Đáp</h1>
+            <p class="subtitle">Chúng tôi sẵn sàng giải đáp thắc mắc của bạn</p>
+        </div>
+    </div>
+    <!-- Slide 10 End -->
+
+    <!-- Slide 11: Lời Cảm ơn & Thông tin Liên hệ -->
+    <div id="slide11" class="slide">
+         <div class="gradient-overlay"></div>
+        <div class="content">
+            <h1 class="thank-you-text">Trân trọng Cảm ơn!</h1>
+            <p class="message">
+                Cảm ơn quý vị đã dành thời gian lắng nghe về dự án Huế IT Space. Chúng tôi rất mong nhận được sự quan tâm, tham gia và đồng hành của các bạn để cùng xây dựng một cộng đồng công nghệ vững mạnh tại Huế.
+            </p>
+            <div class="contact-info">
+                <i class="fas fa-envelope"></i> contact@hueit.space |
+                <i class="fab fa-facebook-square"></i> fb.com/HueITSpace
+            </div>
+            <!-- Placeholder for final logo -->
+            <div class="logo-placeholder-final">Huế IT Space</div>
+        </div>
+    </div>
+    <!-- Slide 11 End -->
+
+</body>
+</html>
