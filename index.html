@@ -3,205 +3,890 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HUẾ IT SPACE - Giới thiệu Dự án Cộng đồng</title>
+    <title>HUẾ IT SPACE - Trình chiếu</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <style>
-        /* General Styles */
-        body, html {
+        /* Base Styles */
+        html {
+            scroll-behavior: smooth; /* Cho phép cuộn mượt */
+        }
+        body {
             margin: 0;
             padding: 0;
-            /* overflow: hidden; */ /* Removed for scrolling view */
+            background-color: #eef2f7; /* Màu nền nhẹ cho khu vực ngoài slide */
             font-family: 'Montserrat', sans-serif;
-            background-color: #e0e0e0; /* Light gray background for contrast between slides */
+            overflow-y: auto; /* Cho phép cuộn dọc */
         }
+
+        /* Slide Base Styles - Áp dụng cho tất cả các section.slide */
         .slide {
-            width: 1280px;
-            min-height: 720px;
+            width: 1280px; /* Giữ nguyên kích thước từ ví dụ */
+            min-height: 720px; /* Giữ nguyên kích thước từ ví dụ */
+            margin: 0 auto; /* Căn giữa slide theo chiều ngang */
+            margin-bottom: 20px; /* Khoảng cách giữa các slide khi cuộn */
+            position: relative;
+            overflow: hidden; /* Ẩn nội dung tràn ra khỏi slide */
+            display: flex; /* Sử dụng flexbox để căn chỉnh nội dung dễ dàng hơn */
+            flex-direction: column;
+            background-color: #ffffff; /* Màu nền mặc định, sẽ bị ghi đè bởi style riêng */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ nhẹ */
+        }
+
+        /* --- Slide 1 Styles (Title Slide) --- */
+        #slide-1 {
+            background-color: #0a192f;
+            color: white;
+            text-align: center;
+            justify-content: center; /* Căn giữa nội dung theo chiều dọc */
+            align-items: center; /* Căn giữa nội dung theo chiều ngang */
+        }
+        #slide-1 .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            z-index: 0;
+        }
+        #slide-1 .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.95) 0%, rgba(46, 111, 192, 0.85) 100%);
+            z-index: 1;
+        }
+        #slide-1 .content {
+            position: relative;
+            z-index: 10;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #slide-1 .main-title {
+            font-size: 7rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #ffffff 0%, #64b5f6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent; /* Fallback */
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+            letter-spacing: 0.05em;
+            animation: fadeInDown 1.2s ease-out;
+        }
+        #slide-1 .subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            max-width: 80%;
+            margin-bottom: 3rem;
+            line-height: 1.4;
+            animation: fadeInUp 1.2s ease-out;
+        }
+        #slide-1 .logos-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 4rem;
+            gap: 2rem;
+            animation: fadeIn 2s ease-out;
+            flex-wrap: wrap; /* Cho phép logo xuống dòng nếu không đủ chỗ */
+        }
+        #slide-1 .logo-placeholder {
+            width: 100px;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.75rem;
+            text-align: center;
+            padding: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        #slide-1 .logo-placeholder:hover {
+            transform: scale(1.1);
+        }
+        #slide-1 .tech-icon {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.2;
+            z-index: 5;
+            color: white;
+        }
+        #slide-1 .tech-icon:nth-child(1) { top: 15%; left: 10%; animation: float 8s infinite; }
+        #slide-1 .tech-icon:nth-child(2) { top: 25%; right: 15%; animation: float 9s infinite; }
+        #slide-1 .tech-icon:nth-child(3) { bottom: 20%; left: 20%; animation: float 7s infinite; }
+        #slide-1 .tech-icon:nth-child(4) { bottom: 25%; right: 10%; animation: float 10s infinite; }
+
+        /* --- Slide 2 Styles (Context) --- */
+        #slide-2 {
+            background-color: #f0f9ff;
+            color: #0a2463;
+        }
+        /* General Header for Content Slides (2, 3, 4, 5, 6, 7, 8, 9, 11) */
+        .slide-header {
+            padding: 2rem 4rem;
+            background: linear-gradient(90deg, #0a2463 0%, #1e88e5 100%);
+            color: white;
+            flex-shrink: 0; /* Ngăn header co lại */
+        }
+        #slide-2 .slide-header { /* Style riêng cho header slide 2 nếu cần */
+             border-bottom-right-radius: 60px;
+        }
+        .slide-header .title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .slide-header .subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+        /* General Content Area for Content Slides */
+        .slide-content {
+             padding: 2rem 4rem; /* Điều chỉnh padding nếu cần */
+             flex-grow: 1; /* Cho phép vùng content giãn ra */
+             display: flex; /* Mặc định là flex, có thể thay đổi ở slide cụ thể */
+             gap: 2rem; /* Khoảng cách giữa các cột/phần tử */
+        }
+        #slide-2 .image-container {
+            flex: 0 0 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem; /* Khoảng cách giữa 2 ảnh */
+        }
+        #slide-2 .city-image {
+            width: 100%; /* Chiếm đủ chiều rộng container */
+            max-width: 400px; /* Giới hạn chiều rộng tối đa */
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            object-fit: cover; /* Đảm bảo ảnh không bị méo */
+        }
+         #slide-2 .reasons {
+            flex: 1; /* Chiếm phần còn lại */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1rem; /* Khoảng cách giữa các reason item */
+        }
+        #slide-2 .reason-item {
+            display: flex;
+            align-items: flex-start;
+            background-color: white;
+            padding: 1.25rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        #slide-2 .reason-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        #slide-2 .icon-container {
+            flex: 0 0 50px; /* Giảm kích thước icon container */
+            height: 50px;
+            background: linear-gradient(135deg, #0a2463 0%, #1e88e5 100%);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            margin-right: 1rem;
+            font-size: 1.5rem; /* Giảm kích thước icon */
+        }
+        #slide-2 .reason-text {
+            flex: 1;
+        }
+        #slide-2 .reason-title {
+            font-weight: 600;
+            font-size: 1.1rem; /* Điều chỉnh font size */
+            margin-bottom: 0.3rem;
+            color: #0a2463;
+        }
+        #slide-2 .reason-desc {
+            font-size: 0.9rem; /* Điều chỉnh font size */
+            line-height: 1.4;
+            color: #4a4a4a;
+        }
+        #slide-2 .highlight { /* Thống nhất highlight style */
+             color: #1e88e5;
+             font-weight: 600;
+        }
+
+        /* --- Slide 3 Styles (Overview) --- */
+        #slide-3 {
+             background: linear-gradient(135deg, #f5f7fa 0%, #e4f1fe 100%);
+             color: #333;
+        }
+        #slide-3 .slide-header .title { font-size: 2.5rem; margin-bottom: 0; } /* Điều chỉnh title header slide 3 */
+        #slide-3 .slide-content {
+            align-items: center; /* Căn giữa các cột theo chiều dọc */
+        }
+        #slide-3 .left-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 1rem; /* Thêm padding phải */
+        }
+        #slide-3 .right-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Căn giữa các box theo dọc */
+            gap: 1.5rem; /* Khoảng cách giữa các info-box */
+            padding-left: 1rem; /* Thêm padding trái */
+        }
+        #slide-3 .what-is {
+            background-color: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             position: relative;
             overflow: hidden;
-            margin: 20px auto; /* Center slides and add space */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Add shadow for slide effect */
+        }
+        #slide-3 .what-is-title {
+            font-size: 1.8rem; /* Điều chỉnh size */
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #0a2463;
+        }
+        #slide-3 .what-is-content {
+            font-size: 1.05rem; /* Điều chỉnh size */
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+            color: #4a4a4a;
+        }
+         #slide-3 .what-is-image {
+             width: 100%;
+             height: auto;
+             max-height: 200px; /* Giới hạn chiều cao ảnh */
+             object-fit: cover;
+             border-radius: 12px;
+             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+         }
+        #slide-3 .info-box {
+            background-color: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: flex-start;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        #slide-3 .info-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        #slide-3 .info-icon {
+            background: linear-gradient(135deg, #0a2463 0%, #1e88e5 100%);
+            color: white;
+            width: 55px; /* Điều chỉnh size */
+            height: 55px;
+            border-radius: 12px; /* Đổi thành vuông bo góc */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem; /* Điều chỉnh size */
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        #slide-3 .info-content { flex: 1; }
+        #slide-3 .info-title {
+            font-size: 1.2rem; /* Điều chỉnh size */
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #0a2463;
+        }
+        #slide-3 .info-desc {
+            font-size: 0.95rem; /* Điều chỉnh size */
+            line-height: 1.5;
+            color: #555;
+        }
+        #slide-3 .highlight { /* Thống nhất highlight style */
+            color: #1e88e5;
+            font-weight: 600;
+        }
+        #slide-3 .pattern {
+            position: absolute;
+            bottom: -15px;
+            right: -15px;
+            width: 120px;
+            height: 120px;
+            background-image: radial-gradient(rgba(30, 136, 229, 0.5) 2px, transparent 2px);
+            background-size: 15px 15px;
+            opacity: 0.2;
+            z-index: 1;
+        }
+        #slide-3 .decoration {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 4rem;
+            opacity: 0.08;
+            color: #0a2463;
         }
 
-        /* Slide 1 Styles */
-        #slide1 { background-color: #0a192f; color: white; }
-        #slide1 .background-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.4; }
-        #slide1 .gradient-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(10, 25, 47, 0.95) 0%, rgba(46, 111, 192, 0.85) 100%); z-index: 1; }
-        #slide1 .content { position: relative; z-index: 10; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; text-align: center; }
-        #slide1 .main-title { font-size: 7rem; font-weight: 900; margin-bottom: 1rem; background: linear-gradient(90deg, #ffffff 0%, #64b5f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.2; letter-spacing: 0.05em; animation: fadeInDown 1.2s ease-out; }
-        #slide1 .subtitle { font-size: 1.8rem; font-weight: 300; max-width: 80%; margin-bottom: 3rem; line-height: 1.4; animation: fadeInUp 1.2s ease-out; }
-        #slide1 .logos-container { display: flex; justify-content: center; align-items: center; margin-top: 4rem; gap: 2rem; animation: fadeIn 2s ease-out; }
-        #slide1 .logo-placeholder { width: 100px; height: 100px; background-color: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 0.75rem; text-align: center; padding: 0.5rem; }
-        #slide1 .tech-icon { position: absolute; font-size: 3rem; opacity: 0.2; z-index: 5; color: white; }
-        #slide1 .tech-icon:nth-child(1) { top: 15%; left: 10%; animation: float 8s infinite; }
-        #slide1 .tech-icon:nth-child(2) { top: 25%; right: 15%; animation: float 9s infinite; }
-        #slide1 .tech-icon:nth-child(3) { bottom: 20%; left: 20%; animation: float 7s infinite; }
-        #slide1 .tech-icon:nth-child(4) { bottom: 25%; right: 10%; animation: float 10s infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        /* --- Slide 4 Styles (Activities) --- */
+        #slide-4 {
+             background: linear-gradient(135deg, #f5f7fa 0%, #e4f1fe 100%);
+             color: #333;
+        }
+        #slide-4 .slide-header .title { font-size: 2.5rem; }
+        #slide-4 .slide-header .subtitle { font-size: 1.2rem; opacity: 0.9; }
+        #slide-4 .slide-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 cột */
+            gap: 2.5rem; /* Tăng khoảng cách */
+        }
+        #slide-4 .activity-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        #slide-4 .activity-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
+        }
+        #slide-4 .card-header {
+            background: linear-gradient(135deg, #0a2463 0%, #1e88e5 100%);
+            padding: 1.25rem 1.5rem; /* Điều chỉnh padding */
+            display: flex;
+            align-items: center;
+        }
+        #slide-4 .card-icon {
+            width: 50px; /* Điều chỉnh size */
+            height: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px; /* Vuông bo góc */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.6rem; /* Điều chỉnh size */
+            color: white;
+            margin-right: 1rem;
+        }
+        #slide-4 .card-title {
+            color: white;
+            font-size: 1.3rem; /* Điều chỉnh size */
+            font-weight: 600;
+        }
+        #slide-4 .card-body {
+            padding: 1.5rem;
+            flex-grow: 1; /* Cho phép body card giãn ra */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Đẩy badge xuống dưới nếu có */
+        }
+        #slide-4 .card-description {
+            color: #555;
+            font-size: 0.95rem; /* Điều chỉnh size */
+            line-height: 1.6;
+            margin-bottom: 1rem; /* Thêm khoảng cách dưới description */
+        }
+         #slide-4 .highlight { /* Thống nhất highlight style */
+             color: #1e88e5;
+             font-weight: 600;
+         }
+        #slide-4 .badges-container {
+            margin-top: auto; /* Đẩy xuống dưới cùng */
+            padding-top: 0.5rem; /* Khoảng cách với description */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        #slide-4 .badge {
+            display: inline-flex; /* Use inline-flex for better alignment */
+            align-items: center;
+            background: #e3f2fd;
+            color: #1e88e5;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem; /* Điều chỉnh size */
+            font-weight: 500;
+            white-space: nowrap; /* Ngăn badge xuống dòng */
+        }
+         #slide-4 .badge i {
+             margin-right: 0.3rem; /* Khoảng cách giữa icon và text */
+         }
+        #slide-4 .footer-note { /* Footer chung cuối slide */
+             text-align: center;
+             margin-top: 1rem; /* Thêm margin top */
+             padding: 0 4rem 1rem; /* Thêm padding bottom */
+             font-style: italic;
+             color: #666;
+             font-size: 0.9rem;
+         }
 
-        /* Slide 2 Styles */
-        #slide2 { background-color: #f0f9ff; color: #0a2463; }
-        #slide2 .header { padding: 2rem 4rem; background: linear-gradient(90deg, #0a2463 0%, #1e88e5 100%); color: white; border-bottom-right-radius: 60px; }
-        #slide2 .title { font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; }
-        #slide2 .subtitle { font-size: 1.5rem; font-weight: 300; opacity: 0.9; }
-        #slide2 .content { display: flex; padding: 2rem; height: calc(100% - 160px); }
-        #slide2 .image-container { flex: 0 0 40%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 1rem; }
-        #slide2 .city-image { width: 90%; height: auto; border-radius: 12px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); object-fit: cover; max-height: 250px; }
-        #slide2 .reasons { flex: 0 0 60%; display: flex; flex-direction: column; justify-content: center; padding: 1rem 2rem; }
-        #slide2 .reason-item { display: flex; align-items: flex-start; margin-bottom: 1.5rem; background-color: white; padding: 1.25rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); transition: transform 0.3s ease; }
-        #slide2 .reason-item:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); }
-        #slide2 .icon-container { flex: 0 0 60px; height: 60px; background: linear-gradient(135deg, #0a2463 0%, #1e88e5 100%); color: white; display: flex; justify-content: center; align-items: center; border-radius: 12px; margin-right: 1rem; font-size: 1.75rem; }
-        #slide2 .reason-text { flex: 1; }
-        #slide2 .reason-title { font-weight: 600; font-size: 1.25rem; margin-bottom: 0.5rem; color: #0a2463; }
-        #slide2 .reason-desc { font-size: 0.95rem; line-height: 1.4; color: #4a4a4a; }
-        #slide2 .highlight { color: #1e88e5; font-weight: 600; }
+        /* --- Slide 5 Styles (Goals) --- */
+        #slide-5 {
+             background: linear-gradient(135deg, #f5f7fa 0%, #e4f1fe 100%);
+             color: #333;
+        }
+        #slide-5 .slide-header .title { font-size: 2.5rem; }
+        #slide-5 .slide-header .subtitle { font-size: 1.2rem; opacity: 0.9; }
+        #slide-5 .slide-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 cột */
+            gap: 2rem;
+            align-items: start; /* Căn các item lên đầu */
+        }
+        #slide-5 .goal-item {
+            background: white;
+            border-radius: 12px;
+            padding: 1.75rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+         #slide-5 .goal-item:hover {
+             transform: translateY(-6px);
+             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+         }
+        #slide-5 .goal-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.25rem; /* Căn giữa và thêm margin dưới */
+            background: linear-gradient(135deg, #0a2463 0%, #1e88e5 100%);
+            color: white;
+            border-radius: 50%; /* Hình tròn */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+        }
+        #slide-5 .goal-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #0a2463;
+            margin-bottom: 0.75rem;
+        }
+        #slide-5 .goal-desc {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #555;
+        }
+         /* Điều chỉnh cho 5 mục tiêu trên 3 cột */
+        #slide-5 .goal-item:nth-child(4) {
+             grid-column: 1 / span 1; /* Mục 4 chiếm cột 1 */
+             grid-row: 2; /* Mục 4 nằm dòng 2 */
+         }
+         #slide-5 .goal-item:nth-child(5) {
+             grid-column: 2 / span 1; /* Mục 5 chiếm cột 2 */
+             grid-row: 2; /* Mục 5 nằm dòng 2 */
+         }
+         /* Căn giữa 2 mục cuối nếu cần */
+         #slide-5 .slide-content {
+             padding-bottom: 3rem; /* Thêm padding để không bị sát đáy */
+         }
+         /* Hoặc dùng cách 5 cột nếu muốn đều hơn */
+         /* #slide-5 .slide-content { grid-template-columns: repeat(5, 1fr); } */
 
-        /* Slide 3 Styles */
-        #slide3 { background: linear-gradient(135deg, #f5f7fa 0%, #e4f1fe 100%); color: #333; }
-        #slide3 .slide-header { background: linear-gradient(90deg, #0a2463 0%, #1e88e5 100%); padding: 1.5rem 4rem; color: white; position: relative; overflow: hidden; }
-        #slide3 .slide-title { font-size: 2.5rem; font-weight: 700; position: relative; z-index: 2; }
-        #slide3 .slide-body { display: flex; padding: 2rem; height: calc(100% - 100px); }
-        #slide3 .left-section { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 0 2rem; }
-        #slide3 .right-section { flex: 1; display: flex; flex-direction: column; padding-left: 2rem; }
-        #slide3 .what-is { background-color: white; border-radius: 16px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); position: relative; overflow: hidden; }
-        #slide3 .what-is-title { font-size: 2rem; font-weight: 700; margin-bottom: 1.5rem; color: #0a2463; }
-        #slide3 .what-is-content { font-size: 1.1rem; line-height: 1.6; position: relative; z-index: 2; }
-        #slide3 .info-box { background-color: white; border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); display: flex; align-items: flex-start; transition: transform 0.3s ease; }
-        #slide3 .info-box:hover { transform: translateY(-5px); }
-        #slide3 .info-icon { background: linear-gradient(135deg, #0a2463 0%, #1e88e5 100%); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; margin-right: 1.5rem; flex-shrink: 0; }
-        #slide3 .info-content { flex: 1; }
-        #slide3 .info-title { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.75rem; color: #0a2463; }
-        #slide3 .info-desc { font-size: 1rem; line-height: 1.5; color: #555; }
-        #slide3 .highlight { color: #1e88e5; font-weight: 600; }
-        #slide3 .pattern { position: absolute; bottom: -20px; right: -20px; width: 150px; height: 150px; background-image: radial-gradient(#1e88e5 2px, transparent 2px); background-size: 15px 15px; opacity: 0.15; z-index: 1; }
-        #slide3 .decoration { position: absolute; top: 15px; right: 15px; font-size: 5rem; opacity: 0.1; color: #0a2463; }
 
-        /* Slide 4 Styles */
-        #slide4 { background: linear-gradient(135deg, #f5f7fa 0%, #e4f1fe 100%); }
-        #slide4 .header { background: linear-gradient(90deg, #0a2463 0%, #1e88e5 100%); padding: 2rem 4rem; color: white; position: relative; }
-        #slide4 .header h1 { font-size: 2.5rem; font-weight: 700; margin: 0; }
-        #slide4 .header p { font-size: 1.2rem; opacity: 0.9; margin-top: 0.5rem; }
-        #slide4 .content { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; padding: 2rem 4rem; }
-        #slide4 .activity-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; display: flex; flex-direction: column; height: 100%; }
-        #slide4 .activity-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); }
-        #slide4 .card-header { background: linear-gradient(135deg, #0a2463 0%, #1e88e5 100%); padding: 1.5rem; display: flex; align-items: center; }
-        #slide4 .card-icon { width: 60px; height: 60px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.8rem; color: white; margin-right: 1.5rem; }
-        #slide4 .card-title { color: white; font-size: 1.5rem; font-weight: 600; }
-        #slide4 .card-body { padding: 1.5rem; flex: 1; }
-        #slide4 .card-description { color: #555; font-size: 1rem; line-height: 1.6; }
-        #slide4 .highlight { color: #1e88e5; font-weight: 600; }
-        #slide4 .badge { display: inline-block; background: #e3f2fd; color: #1e88e5; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500; margin-top: 1rem; margin-right: 0.5rem; }
-        #slide4 .footer-note { text-align: center; margin-top: 1rem; font-style: italic; color: #666; padding: 0 4rem; }
+        /* --- Slide 6 Styles (Vision) --- */
+        #slide-6 {
+             /* Sử dụng nền gradient tối giống slide 1 nhưng có thể biến thể nhẹ */
+             background: linear-gradient(135deg, rgba(10, 25, 47, 0.98) 0%, rgba(20, 61, 115, 0.95) 100%), url('https://img.freepik.com/free-vector/digital-global-connection-network-technology-background_1017-23324.jpg?w=1380') center/cover no-repeat;
+             color: white;
+             text-align: center;
+             justify-content: center; /* Căn giữa nội dung */
+             align-items: center;
+        }
+         #slide-6 .content-wrapper { /* Thêm wrapper để dễ quản lý nội dung */
+             position: relative;
+             z-index: 10;
+             max-width: 85%; /* Giới hạn chiều rộng */
+             background: rgba(0, 0, 0, 0.3); /* Nền mờ nhẹ cho dễ đọc */
+             padding: 3rem;
+             border-radius: 16px;
+             backdrop-filter: blur(5px); /* Hiệu ứng blur nền */
+             border: 1px solid rgba(255, 255, 255, 0.1);
+         }
+        #slide-6 .vision-title {
+            font-size: 3.5rem; /* To hơn */
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+             color: #ffffff; /* Màu trắng sáng */
+             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        #slide-6 .vision-item {
+            font-size: 1.3rem; /* To hơn */
+            font-weight: 300;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+             padding: 0 1rem; /* Thêm padding để không bị sát viền */
+        }
+         #slide-6 .vision-item i { /* Icon đầu dòng nếu muốn */
+             margin-right: 0.75rem;
+             color: #64b5f6; /* Màu xanh sáng */
+             font-size: 1.2em; /* Kích thước tương đối */
+         }
+         #slide-6 .vision-item:last-child {
+             margin-bottom: 0; /* Bỏ margin cuối */
+         }
+         #slide-6 .highlight {
+             font-weight: 600;
+             color: #a6d4fa; /* Màu sáng hơn cho highlight */
+         }
 
-        /* Slide 5 Styles */
-        #slide5 { background-color: #ffffff; color: #0a2463; }
-        #slide5 .header { padding: 2rem 4rem; background: linear-gradient(90deg, #0a2463 0%, #1e88e5 100%); color: white; border-bottom-left-radius: 60px; }
-        #slide5 .title { font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; }
-        #slide5 .subtitle { font-size: 1.5rem; font-weight: 300; opacity: 0.9; }
-        #slide5 .content { display: flex; padding: 2rem 4rem; align-items: center; }
-        #slide5 .goals-list { flex: 2; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-        #slide5 .goal-item { display: flex; align-items: center; background-color: #f0f9ff; padding: 1.25rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); transition: all 0.3s ease; border-left: 5px solid #1e88e5; }
-        #slide5 .goal-item:hover { transform: scale(1.03); box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); }
-        #slide5 .goal-icon { font-size: 2rem; color: #1e88e5; margin-right: 1rem; width: 50px; text-align: center; }
-        #slide5 .goal-text { font-size: 1.1rem; line-height: 1.5; color: #0a2463; font-weight: 600; }
-        #slide5 .image-container { flex: 1; padding-left: 3rem; display: flex; justify-content: center; align-items: center; }
-        #slide5 .goal-image { max-width: 100%; height: auto; border-radius: 16px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
-        #slide5 .highlight { color: #1e88e5; font-weight: 700; }
+        /* --- Slide 7 Styles (Partners) --- */
+        #slide-7 {
+             background-color: #ffffff; /* Nền trắng đơn giản */
+             color: #333;
+        }
+        #slide-7 .slide-header .title { font-size: 2.5rem; }
+        #slide-7 .slide-header .subtitle { font-size: 1.2rem; opacity: 0.9; }
+        #slide-7 .slide-content {
+             flex-direction: column; /* Xếp chồng lên nhau */
+             align-items: center; /* Căn giữa */
+             text-align: center;
+        }
+        #slide-7 .intro-text {
+             font-size: 1.2rem;
+             color: #555;
+             margin-bottom: 2.5rem;
+             max-width: 70%;
+        }
+        #slide-7 .partners-grid {
+             display: flex; /* Sử dụng flexbox để các logo tự căn chỉnh */
+             flex-wrap: wrap; /* Cho phép xuống dòng */
+             justify-content: center; /* Căn giữa các logo */
+             align-items: center; /* Căn các logo theo chiều dọc */
+             gap: 3rem; /* Khoảng cách giữa các logo */
+             width: 100%;
+             margin-bottom: 2.5rem;
+        }
+        #slide-7 .partner-logo {
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+             justify-content: center;
+             width: 150px; /* Kích thước cố định cho logo container */
+             height: 150px;
+             padding: 1rem;
+             background-color: #f8f9fa; /* Nền nhẹ */
+             border-radius: 12px;
+             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+             transition: all 0.3s ease;
+        }
+        #slide-7 .partner-logo img { /* Nếu có ảnh logo */
+             max-width: 100%;
+             max-height: 80%; /* Để chừa chỗ cho tên */
+             object-fit: contain;
+             margin-bottom: 0.5rem;
+        }
+        #slide-7 .partner-logo .logo-text { /* Nếu chỉ có text */
+             font-weight: 600;
+             color: #0a2463;
+             font-size: 0.9rem;
+        }
+         #slide-7 .partner-logo:hover {
+             transform: scale(1.05);
+             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+         }
+        #slide-7 .emphasis-text {
+             font-size: 1.1rem;
+             font-weight: 500;
+             color: #1e88e5;
+             margin-top: 1rem; /* Khoảng cách với lưới logo */
+             font-style: italic;
+        }
+        #slide-7 .highlight { /* Thống nhất highlight style */
+             color: #1e88e5;
+             font-weight: 600;
+         }
 
-        /* Slide 6 Styles */
-        #slide6 { background: linear-gradient(135deg, #0a192f 0%, #1d3a6e 100%); color: white; }
-        #slide6 .content { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 4rem; height: 100%; position: relative; z-index: 10; }
-        #slide6 .title { font-size: 3.5rem; font-weight: 700; margin-bottom: 2rem; }
-        #slide6 .vision-item { margin-bottom: 2rem; max-width: 800px; background: rgba(255, 255, 255, 0.08); padding: 1.5rem; border-radius: 12px; backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        #slide6 .vision-icon { font-size: 2.5rem; color: #64b5f6; margin-bottom: 1rem; }
-        #slide6 .vision-text { font-size: 1.2rem; line-height: 1.6; font-weight: 300; }
-        #slide6 .highlight { font-weight: 600; color: #90caf9; }
-        #slide6 .background-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('https://images.unsplash.com/photo-1518770660439-4636190af475?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MXxzZWFyY2h8Mnx8dGVjaG5vbG9neSUyMGJhY2tncm91bmR8fDB8fHx8MTY3ODg4NjAwNQ&ixlib=rb-4.0.3&q=80&w=1080') no-repeat center center; background-size: cover; opacity: 0.15; z-index: 1; }
+        /* --- Slide 8 Styles (Team) --- */
+        #slide-8 {
+             background: linear-gradient(135deg, #f5f7fa 0%, #e4f1fe 100%);
+             color: #333;
+        }
+        #slide-8 .slide-header .title { font-size: 2.5rem; }
+        #slide-8 .slide-header .subtitle { font-size: 1.2rem; opacity: 0.9; }
+        #slide-8 .slide-content {
+             justify-content: center; /* Căn giữa các thẻ thành viên */
+             align-items: center;
+             gap: 4rem; /* Khoảng cách lớn hơn giữa các thành viên */
+        }
+        #slide-8 .team-member-card {
+             background: white;
+             border-radius: 16px;
+             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+             text-align: center;
+             padding: 2.5rem;
+             width: 320px; /* Kích thước cố định cho card */
+             transition: all 0.3s ease;
+        }
+         #slide-8 .team-member-card:hover {
+             transform: translateY(-10px);
+             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+         }
+        #slide-8 .member-photo {
+             width: 160px; /* Kích thước ảnh */
+             height: 160px;
+             border-radius: 50%; /* Ảnh tròn */
+             object-fit: cover; /* Đảm bảo ảnh vừa vặn */
+             margin: 0 auto 1.5rem;
+             border: 5px solid #e3f2fd; /* Viền nhẹ cho ảnh */
+             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+         #slide-8 .member-photo-placeholder { /* Placeholder nếu không có ảnh */
+             width: 160px;
+             height: 160px;
+             border-radius: 50%;
+             background-color: #d0e6f8;
+             margin: 0 auto 1.5rem;
+             border: 5px solid #e3f2fd;
+             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             font-size: 4rem;
+             color: #0a2463;
+         }
+        #slide-8 .member-name {
+             font-size: 1.5rem;
+             font-weight: 700;
+             color: #0a2463;
+             margin-bottom: 0.5rem;
+        }
+        #slide-8 .member-title {
+             font-size: 1rem;
+             font-weight: 500;
+             color: #1e88e5;
+             margin-bottom: 1rem;
+        }
+        #slide-8 .member-company {
+             font-size: 0.9rem;
+             color: #666;
+        }
 
-        /* Slide 7 Styles */
-        #slide7 { background: #f8f9fa; color: #343a40; }
-        #slide7 .header { padding: 2rem 4rem; background: linear-gradient(90deg, #6c757d 0%, #adb5bd 100%); color: white; border-bottom-right-radius: 60px; }
-        #slide7 .title { font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; }
-        #slide7 .content { padding: 3rem 4rem; text-align: center; }
-        #slide7 .partners-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; margin-bottom: 3rem; align-items: center; }
-        #slide7 .partner-logo { display: flex; flex-direction: column; align-items: center; justify-content: center; background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07); transition: transform 0.3s ease; height: 180px; }
-        #slide7 .partner-logo:hover { transform: translateY(-8px); }
-        #slide7 .partner-logo img { max-width: 100px; max-height: 80px; object-fit: contain; margin-bottom: 1rem; }
-        #slide7 .partner-logo span { font-weight: 600; color: #495057; font-size: 0.9rem; }
-        #slide7 .collaboration-text { font-size: 1.3rem; font-weight: 300; color: #495057; max-width: 900px; margin: 0 auto; line-height: 1.7; }
-        #slide7 .highlight { font-weight: 600; color: #0a2463; }
-        /* Placeholder logo style */
-        .logo-placeholder-generic { width: 100px; height: 80px; background-color: #e9ecef; border-radius: 8px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; color: #adb5bd; margin-bottom: 1rem; }
+        /* --- Slide 9 Styles (Call to Action) --- */
+        #slide-9 {
+            /* Gradient tương tự slide 1 nhưng sáng hơn */
+            background: linear-gradient(135deg, rgba(30, 136, 229, 0.9) 0%, rgba(10, 37, 99, 0.95) 100%), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            color: white;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        #slide-9 .content-wrapper { /* Wrapper tương tự slide 6 */
+             position: relative;
+             z-index: 10;
+             max-width: 90%;
+             background: rgba(0, 0, 0, 0.4);
+             padding: 2.5rem 3rem;
+             border-radius: 16px;
+             backdrop-filter: blur(4px);
+             border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        #slide-9 .cta-title {
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            line-height: 1.3;
+        }
+        #slide-9 .cta-sections {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap; /* Cho phép xuống dòng nếu không đủ chỗ */
+        }
+        #slide-9 .cta-section {
+            flex: 1; /* Chia đều không gian */
+            min-width: 250px; /* Chiều rộng tối thiểu */
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: background 0.3s ease;
+        }
+        #slide-9 .cta-section:hover {
+             background: rgba(255, 255, 255, 0.2);
+        }
+        #slide-9 .cta-target {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #a6d4fa; /* Màu xanh sáng */
+            margin-bottom: 0.75rem;
+        }
+        #slide-9 .cta-message {
+            font-size: 1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        #slide-9 .contact-info {
+            margin-top: 2rem; /* Tăng khoảng cách */
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        #slide-9 .contact-info strong {
+            font-weight: 600;
+            color: #ffffff;
+        }
+        #slide-9 .contact-info a {
+            color: #a6d4fa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        #slide-9 .contact-info a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+        #slide-9 .contact-info i {
+            margin-right: 0.5rem;
+            width: 20px; /* Căn chỉnh icon */
+            text-align: center;
+        }
 
-        /* Slide 8 Styles */
-        #slide8 { background: linear-gradient(135deg, #eef2f7 0%, #ffffff 100%); color: #333; }
-        #slide8 .header { background: linear-gradient(90deg, #0a2463 0%, #1e88e5 100%); padding: 1.5rem 4rem; color: white; }
-        #slide8 .title { font-size: 2.5rem; font-weight: 700; }
-        #slide8 .content { display: flex; justify-content: space-around; align-items: center; padding: 4rem; }
-        #slide8 .team-member { text-align: center; background: white; padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); width: 40%; transition: transform 0.3s ease; }
-        #slide8 .team-member:hover { transform: translateY(-10px); }
-        #slide8 .member-photo { width: 180px; height: 180px; border-radius: 50%; margin: 0 auto 1.5rem auto; object-fit: cover; border: 5px solid #1e88e5; }
-        #slide8 .member-name { font-size: 1.8rem; font-weight: 700; color: #0a2463; margin-bottom: 0.5rem; }
-        #slide8 .member-title { font-size: 1.1rem; font-weight: 600; color: #1e88e5; margin-bottom: 1rem; }
-        #slide8 .member-desc { font-size: 1rem; color: #555; line-height: 1.5; }
-        #slide8 .highlight { font-weight: 600; }
-        /* Placeholder portrait style */
-        .portrait-placeholder { width: 180px; height: 180px; border-radius: 50%; margin: 0 auto 1.5rem auto; background-color: #ced4da; display: flex; justify-content: center; align-items: center; font-size: 4rem; color: #6c757d; border: 5px solid #1e88e5; }
+        /* --- Slide 10 Styles (Q&A) --- */
+        #slide-10 {
+             background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); /* Gradient khác biệt */
+             color: white;
+             justify-content: center;
+             align-items: center;
+             text-align: center;
+        }
+        #slide-10 .qa-title {
+             font-size: 6rem;
+             font-weight: 900;
+             text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+             margin-bottom: 1rem;
+        }
+        #slide-10 .qa-subtitle {
+             font-size: 1.8rem;
+             font-weight: 300;
+             opacity: 0.9;
+        }
+        #slide-10 .qa-icon {
+             font-size: 5rem;
+             margin-top: 3rem;
+             opacity: 0.5;
+             animation: pulse 2s infinite ease-in-out;
+        }
 
-        /* Slide 9 Styles */
-        #slide9 { background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MXxzZWFyY2h8NHx8Y29tbXVuaXR5fGVufDB8fHx8MTY3ODg4NjQwOA&ixlib=rb-4.0.3&q=80&w=1080') no-repeat center center; background-size: cover; }
-        #slide9 .overlay { background: rgba(10, 36, 99, 0.85); width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; }
-        #slide9 .content { position: relative; z-index: 10; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 3rem; height: 100%; }
-        #slide9 .title { font-size: 3.5rem; font-weight: 700; margin-bottom: 2rem; }
-        #slide9 .cta-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; width: 100%; max-width: 1100px; margin-bottom: 2.5rem; }
-        #slide9 .cta-card { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); padding: 2rem; border-radius: 12px; backdrop-filter: blur(10px); transition: background 0.3s ease; }
-        #slide9 .cta-card:hover { background: rgba(255, 255, 255, 0.2); }
-        #slide9 .cta-target { font-size: 1.3rem; font-weight: 600; color: #90caf9; margin-bottom: 1rem; }
-        #slide9 .cta-text { font-size: 1.1rem; line-height: 1.6; margin-bottom: 1.5rem; }
-        #slide9 .cta-button { display: inline-block; background: #1e88e5; color: white; padding: 0.8rem 1.8rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: background 0.3s ease; }
-        #slide9 .cta-button:hover { background: #1565c0; }
-        #slide9 .contact-info { margin-top: 2rem; font-size: 1rem; }
-        #slide9 .contact-info a { color: #90caf9; text-decoration: none; margin: 0 0.75rem; font-weight: 500; }
-        #slide9 .contact-info a:hover { text-decoration: underline; }
+        /* --- Slide 11 Styles (Thank You) --- */
+        #slide-11 {
+             background-color: #0a192f; /* Giống slide 1 */
+             color: white;
+             text-align: center;
+             justify-content: center;
+             align-items: center;
+        }
+        #slide-11 .content-wrapper { /* Wrapper để căn giữa */
+             position: relative;
+             z-index: 10;
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+             padding: 2rem;
+        }
+        #slide-11 .thank-you-title {
+             font-size: 5rem;
+             font-weight: 700;
+             margin-bottom: 1.5rem;
+             color: #ffffff;
+             background: linear-gradient(90deg, #ffffff 0%, #64b5f6 100%);
+             -webkit-background-clip: text;
+             background-clip: text;
+             -webkit-text-fill-color: transparent;
+        }
+        #slide-11 .thank-you-text {
+             font-size: 1.3rem;
+             font-weight: 300;
+             margin-bottom: 2.5rem;
+             max-width: 70%;
+             opacity: 0.9;
+        }
+        #slide-11 .contact-info-final {
+             font-size: 1.1rem;
+             margin-bottom: 3rem;
+             line-height: 1.7;
+        }
+        #slide-11 .contact-info-final a {
+             color: #a6d4fa;
+             text-decoration: none;
+             transition: color 0.3s ease;
+         }
+         #slide-11 .contact-info-final a:hover {
+             color: #ffffff;
+             text-decoration: underline;
+         }
+         #slide-11 .contact-info-final i {
+             margin-right: 0.75rem;
+             width: 20px;
+             text-align: center;
+             color: #64b5f6; /* Màu icon */
+         }
+        #slide-11 .final-logo-placeholder { /* Logo chính cuối cùng */
+             width: 120px;
+             height: 120px;
+             background-color: rgba(255, 255, 255, 0.1);
+             border-radius: 50%;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             font-size: 0.8rem;
+             text-align: center;
+             padding: 0.5rem;
+             margin-top: 1rem; /* Khoảng cách với contact */
+        }
 
-        /* Slide 10 Styles */
-        #slide10 { background: linear-gradient(135deg, #f0f9ff 0%, #e3f2fd 100%); color: #0a2463; }
-        #slide10 .content { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 4rem; height: 100%; }
-        #slide10 .qa-icon { font-size: 8rem; color: #1e88e5; margin-bottom: 2rem; animation: bounce 2s infinite; }
-        #slide10 .title { font-size: 4rem; font-weight: 700; margin-bottom: 1rem; }
-        #slide10 .subtitle { font-size: 1.5rem; font-weight: 300; color: #555; }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-30px); } 60% { transform: translateY(-15px); } }
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
 
-        /* Slide 11 Styles */
-        #slide11 { background-color: #0a192f; color: white; }
-        #slide11 .content { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 4rem; height: 100%; position: relative; z-index: 10; }
-        #slide11 .gradient-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(10, 25, 47, 0.9) 0%, rgba(29, 58, 110, 0.8) 100%); z-index: 1; }
-        #slide11 .thank-you-text { font-size: 4.5rem; font-weight: 700; margin-bottom: 2rem; background: linear-gradient(90deg, #ffffff 0%, #90caf9 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        #slide11 .message { font-size: 1.3rem; font-weight: 300; margin-bottom: 3rem; max-width: 700px; line-height: 1.6; }
-        #slide11 .contact-info { font-size: 1.1rem; margin-bottom: 3rem; }
-        #slide11 .contact-info i { margin-right: 0.5rem; color: #64b5f6; }
-        #slide11 .contact-info a { color: #90caf9; text-decoration: none; margin: 0 1rem; }
-        #slide11 .contact-info a:hover { text-decoration: underline; }
-        #slide11 .final-logo { width: 150px; height: auto; opacity: 0.8; } /* Placeholder for logo */
-        #slide11 .logo-placeholder-final { width: 150px; height: 150px; background-color: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1rem; text-align: center; padding: 1rem; opacity: 0.8; }
     </style>
 </head>
 <body>
 
-    <!-- Slide 1: Trang Tiêu đề -->
-    <div id="slide1" class="slide">
-        <img src="https://thumbs.dreamstime.com/b/futuristic-cityscape-featuring-towering-skyscrapers-sleek-high-tech-style-center-large-glowing-orb-resembling-bitcoin-361407685.jpg" alt="Huế Technology Skyline" class="background-image">
+    <section class="slide" id="slide-1">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Huế Technology Skyline" class="background-image">
         <div class="gradient-overlay"></div>
 
-        <div class="tech-icon"><i class="fas fa-code"></i></div>
-        <div class="tech-icon"><i class="fas fa-database"></i></div>
-        <div class="tech-icon"><i class="fas fa-laptop-code"></i></div>
-        <div class="tech-icon"><i class="fas fa-network-wired"></i></div>
+        <div class="tech-icon" style="z-index: 5;"><i class="fas fa-code"></i></div>
+        <div class="tech-icon" style="z-index: 5;"><i class="fas fa-database"></i></div>
+        <div class="tech-icon" style="z-index: 5;"><i class="fas fa-laptop-code"></i></div>
+        <div class="tech-icon" style="z-index: 5;"><i class="fas fa-network-wired"></i></div>
 
         <div class="content">
             <h1 class="main-title">HUẾ IT SPACE</h1>
@@ -214,57 +899,44 @@
                 <div class="logo-placeholder">Ment Media And Tech</div>
             </div>
         </div>
-    </div>
-    <!-- Slide 1 End -->
+    </section>
 
-    <!-- Slide 2: Bối cảnh & Nhu cầu tại Huế -->
-    <div id="slide2" class="slide">
-        <div class="header">
+    <section class="slide" id="slide-2">
+        <div class="slide-header">
             <h1 class="title">Vì sao Huế IT Space ra đời?</h1>
             <p class="subtitle">Bối cảnh & Nhu cầu thực tiễn</p>
         </div>
 
-        <div class="content">
+        <div class="slide-content">
             <div class="image-container">
-                <img src="https://cdnen.thesaigontimes.vn/wp-content/uploads/2024/09/z3960637851352d825572bab99b2d6eaab13853e5f6da7-167152768772129833403.jpg" alt="Thành phố Huế" class="city-image">
-                <img src="https://www.codemotion.com/magazine/wp-content/uploads/2023/07/Collaborative-Coding.-A-developer-team-working-together.-min.jpg" alt="Cộng đồng IT" class="city-image mt-4">
+                 <img src="https://cdnen.thesaigontimes.vn/wp-content/uploads/2024/09/z3960637851352d825572bab99b2d6eaab13853e5f6da7-167152768772129833403.jpg" alt="Thành phố Huế" class="city-image">
+                <img src="https://www.codemotion.com/magazine/wp-content/uploads/2023/07/Collaborative-Coding.-A-developer-team-working-together.-min.jpg" alt="Cộng đồng IT" class="city-image">
             </div>
 
             <div class="reasons">
                 <div class="reason-item">
-                    <div class="icon-container">
-                        <i class="fas fa-handshake"></i>
-                    </div>
+                    <div class="icon-container"><i class="fas fa-handshake"></i></div>
                     <div class="reason-text">
                         <h3 class="reason-title">Thiếu kết nối thực tế</h3>
                         <p class="reason-desc">Nhu cầu <span class="highlight">gắn kết hiệu quả</span> giữa sinh viên CNTT và các chuyên gia, doanh nghiệp tại Huế chưa được đáp ứng đầy đủ.</p>
                     </div>
                 </div>
-
                 <div class="reason-item">
-                    <div class="icon-container">
-                        <i class="fas fa-rocket"></i>
-                    </div>
+                    <div class="icon-container"><i class="fas fa-rocket"></i></div>
                     <div class="reason-text">
                         <h3 class="reason-title">Tiềm năng chưa khai phá</h3>
                         <p class="reason-desc">Huế có <span class="highlight">tiềm năng phát triển mạnh mẽ</span> về ngành CNTT nhưng còn thiếu hệ sinh thái và động lực phát triển.</p>
                     </div>
                 </div>
-
                 <div class="reason-item">
-                    <div class="icon-container">
-                        <i class="fas fa-brain"></i>
-                    </div>
+                    <div class="icon-container"><i class="fas fa-brain"></i></div>
                     <div class="reason-text">
                         <h3 class="reason-title">Khát vọng nâng cao kỹ năng</h3>
                         <p class="reason-desc">Thế hệ lập trình viên trẻ cần <span class="highlight">kỹ năng thực chiến</span>, tư duy đổi mới và cơ hội nghề nghiệp thực tế.</p>
                     </div>
                 </div>
-
                 <div class="reason-item">
-                    <div class="icon-container">
-                        <i class="fas fa-users"></i>
-                    </div>
+                    <div class="icon-container"><i class="fas fa-users"></i></div>
                     <div class="reason-text">
                         <h3 class="reason-title">Thiếu không gian cộng đồng</h3>
                         <p class="reason-desc">Sự cần thiết của một <span class="highlight">không gian chung</span> để học hỏi, chia sẻ và phát triển cộng đồng công nghệ tại Huế.</p>
@@ -272,16 +944,14 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Slide 2 End -->
+    </section>
 
-    <!-- Slide 3: Giới thiệu Tổng quan về Huế IT Space -->
-    <div id="slide3" class="slide">
+    <section class="slide" id="slide-3">
         <div class="slide-header">
-            <h1 class="slide-title">Huế IT Space là gì?</h1>
-        </div>
+            <h1 class="title">Huế IT Space là gì?</h1>
+            </div>
 
-        <div class="slide-body">
+        <div class="slide-content">
             <div class="left-section">
                 <div class="what-is">
                     <i class="fas fa-laptop-code decoration"></i>
@@ -292,35 +962,26 @@
                     </div>
                     <div class="pattern"></div>
                 </div>
-
-                <img src="https://rock-the-prototype.com/wp-content/uploads/2023/01/Coden-im-Team-Warum-gemeinsam-programmieren-so-effektiv-ist_hochaufloesend_RTP.jpg" alt="Cộng đồng lập trình" class="rounded-xl shadow-lg" style="height: 220px; object-fit: cover;">
+                <img src="https://rock-the-prototype.com/wp-content/uploads/2023/01/Coden-im-Team-Warum-gemeinsam-programmieren-so-effektiv-ist_hochaufloesend_RTP.jpg" alt="Cộng đồng lập trình" class="what-is-image">
             </div>
 
             <div class="right-section">
                 <div class="info-box">
-                    <div class="info-icon">
-                        <i class="fas fa-bullseye"></i>
-                    </div>
+                    <div class="info-icon"><i class="fas fa-bullseye"></i></div>
                     <div class="info-content">
                         <h3 class="info-title">Sứ mệnh</h3>
                         <p class="info-desc">Trở thành <span class="highlight">cầu nối vững chắc</span> giữa chuyên gia/lập trình viên giàu kinh nghiệm và sinh viên/người trẻ đam mê công nghệ.</p>
                     </div>
                 </div>
-
                 <div class="info-box">
-                    <div class="info-icon">
-                        <i class="fas fa-route"></i>
-                    </div>
+                    <div class="info-icon"><i class="fas fa-route"></i></div>
                     <div class="info-content">
                         <h3 class="info-title">Cách tiếp cận</h3>
                         <p class="info-desc">Thông qua <span class="highlight">chuỗi hoạt động đa dạng và thực tiễn</span>, tập trung vào đào tạo thực hành, mentoring 1:1, cuộc thi, và dự án thực tế với doanh nghiệp.</p>
                     </div>
                 </div>
-
                 <div class="info-box">
-                    <div class="info-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
+                    <div class="info-icon"><i class="fas fa-lightbulb"></i></div>
                     <div class="info-content">
                         <h3 class="info-title">Giá trị cốt lõi</h3>
                         <p class="info-desc">Phát triển <span class="highlight">tri thức mở</span>, <span class="highlight">đổi mới sáng tạo</span>, và <span class="highlight">tinh thần cộng đồng</span> trong lĩnh vực công nghệ.</p>
@@ -328,286 +989,345 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Slide 3 End -->
+    </section>
 
-    <!-- Slide 4: Các Hoạt động Trọng tâm -->
-    <div id="slide4" class="slide">
-        <div class="header">
-            <h1>Huế IT Space Mang đến những gì?</h1>
-            <p>Các hoạt động trọng tâm xây dựng cộng đồng</p>
+    <section class="slide" id="slide-4">
+        <div class="slide-header">
+            <h1 class="title">Huế IT Space Mang đến những gì?</h1>
+            <p class="subtitle">Các hoạt động trọng tâm xây dựng cộng đồng</p>
         </div>
 
-        <div class="content">
-            <!-- Đào tạo Chuyên sâu -->
+        <div class="slide-content">
             <div class="activity-card">
                 <div class="card-header">
-                    <div class="card-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
+                    <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
                     <div class="card-title">Đào tạo Chuyên sâu</div>
                 </div>
                 <div class="card-body">
-                    <p class="card-description">
-                        Cập nhật <span class="highlight">kiến thức</span> và <span class="highlight">kỹ năng lập trình</span> theo xu hướng mới nhất, tập trung vào ứng dụng thực tế và nhu cầu thị trường.
-                    </p>
-                    <div>
-                        <span class="badge"><i class="fas fa-code mr-1"></i> Web Development</span>
-                        <span class="badge"><i class="fas fa-robot mr-1"></i> AI</span>
-                        <span class="badge"><i class="fas fa-mobile-alt mr-1"></i> Mobile</span>
-                        <span class="badge"><i class="fas fa-database mr-1"></i> Data Science</span>
+                    <p class="card-description">Cập nhật <span class="highlight">kiến thức</span> và <span class="highlight">kỹ năng lập trình</span> theo xu hướng mới nhất (Web, AI,...), tập trung vào ứng dụng thực tế và nhu cầu thị trường.</p>
+                    <div class="badges-container">
+                        <span class="badge"><i class="fas fa-code"></i> Web Dev</span>
+                        <span class="badge"><i class="fas fa-robot"></i> AI/ML</span>
+                        <span class="badge"><i class="fas fa-mobile-alt"></i> Mobile</span>
+                        <span class="badge"><i class="fas fa-database"></i> Data</span>
+                        <span class="badge"><i class="fas fa-tools"></i> DevOps</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Cố vấn Chuyên môn -->
             <div class="activity-card">
                 <div class="card-header">
-                    <div class="card-icon">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <div class="card-title">Cố vấn Chuyên môn</div>
+                    <div class="card-icon"><i class="fas fa-user-tie"></i></div>
+                    <div class="card-title">Cố vấn Chuyên môn (Mentoring)</div>
                 </div>
                 <div class="card-body">
-                    <p class="card-description">
-                        Kết nối <span class="highlight">1:1 với chuyên gia</span> để định hướng nghề nghiệp, giải đáp thắc mắc và phát triển kỹ năng cá nhân theo lộ trình chuyên biệt.
-                    </p>
-                    <div>
-                        <span class="badge"><i class="fas fa-comments mr-1"></i> Tư vấn 1:1</span>
-                        <span class="badge"><i class="fas fa-road mr-1"></i> Lộ trình nghề nghiệp</span>
-                        <span class="badge"><i class="fas fa-hands-helping mr-1"></i> Hỗ trợ cá nhân</span>
+                    <p class="card-description">Kết nối <span class="highlight">1:1 với chuyên gia</span> để định hướng nghề nghiệp, giải đáp thắc mắc chuyên sâu và phát triển kỹ năng cá nhân theo lộ trình.</p>
+                    <div class="badges-container">
+                        <span class="badge"><i class="fas fa-comments"></i> Tư vấn 1:1</span>
+                        <span class="badge"><i class="fas fa-road"></i> Định hướng</span>
+                        <span class="badge"><i class="fas fa-hands-helping"></i> Hỗ trợ cá nhân</span>
+                        <span class="badge"><i class="fas fa-network-wired"></i> Networking</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Cuộc thi & Sân chơi Công nghệ -->
             <div class="activity-card">
                 <div class="card-header">
-                    <div class="card-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
+                    <div class="card-icon"><i class="fas fa-trophy"></i></div>
                     <div class="card-title">Cuộc thi & Sân chơi Công nghệ</div>
                 </div>
                 <div class="card-body">
-                    <p class="card-description">
-                        Tổ chức <span class="highlight">Hackathons</span>, <span class="highlight">Coding Challenges</span>, và các sự kiện trình diễn sản phẩm để kích thích sáng tạo và tạo cơ hội giao lưu, cọ xát.
-                    </p>
-                    <div>
-                        <span class="badge"><i class="fas fa-laptop-code mr-1"></i> Hackathons</span>
-                        <span class="badge"><i class="fas fa-puzzle-piece mr-1"></i> Coding Challenges</span>
-                        <span class="badge"><i class="fas fa-project-diagram mr-1"></i> Showcase</span>
+                    <p class="card-description">Tổ chức <span class="highlight">Hackathons</span>, <span class="highlight">Coding Challenges</span>, và sự kiện <span class="highlight">Showcase</span> sản phẩm để kích thích sáng tạo, cọ xát và thể hiện năng lực.</p>
+                    <div class="badges-container">
+                        <span class="badge"><i class="fas fa-laptop-code"></i> Hackathons</span>
+                        <span class="badge"><i class="fas fa-puzzle-piece"></i> Coding Challenges</span>
+                        <span class="badge"><i class="fas fa-lightbulb"></i> Sáng tạo</span>
+                        <span class="badge"><i class="fas fa-project-diagram"></i> Showcase</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Triển khai Dự án Thực tế -->
             <div class="activity-card">
                 <div class="card-header">
-                    <div class="card-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
+                    <div class="card-icon"><i class="fas fa-briefcase"></i></div>
                     <div class="card-title">Triển khai Dự án Thực tế</div>
                 </div>
                 <div class="card-body">
-                    <p class="card-description">
-                        Cơ hội tham gia vào các <span class="highlight">dự án IT của doanh nghiệp</span> để tích lũy kinh nghiệm làm việc "thật" và xây dựng portfolio chuyên nghiệp.
-                    </p>
-                    <div>
-                        <span class="badge"><i class="fas fa-building mr-1"></i> Dự án doanh nghiệp</span>
-                        <span class="badge"><i class="fas fa-tasks mr-1"></i> Quy trình chuyên nghiệp</span>
-                        <span class="badge"><i class="fas fa-id-card mr-1"></i> Portfolio thực tế</span>
+                    <p class="card-description">Cơ hội tham gia vào các <span class="highlight">dự án IT thực tế</span> từ doanh nghiệp đối tác để tích lũy kinh nghiệm làm việc "thật" và xây dựng portfolio.</p>
+                    <div class="badges-container">
+                        <span class="badge"><i class="fas fa-building"></i> Dự án doanh nghiệp</span>
+                        <span class="badge"><i class="fas fa-tasks"></i> Kinh nghiệm thực chiến</span>
+                        <span class="badge"><i class="fas fa-id-card"></i> Portfolio</span>
+                        <span class="badge"><i class="fas fa-users"></i> Teamwork</span>
                     </div>
                 </div>
             </div>
         </div>
+         <div class="footer-note">
+             Tất cả hoạt động đều hướng đến xây dựng một hệ sinh thái công nghệ bền vững và năng động tại Huế.
+         </div>
+    </section>
 
-        <div class="footer-note">
-            Tất cả hoạt động đều hướng đến xây dựng một hệ sinh thái công nghệ bền vững và năng động tại Huế
-        </div>
-    </div>
-    <!-- Slide 4 End -->
-
-    <!-- Slide 5: Mục tiêu Phát triển của Dự án -->
-    <div id="slide5" class="slide">
-        <div class="header">
+    <section class="slide" id="slide-5">
+         <div class="slide-header">
             <h1 class="title">Chúng tôi Hướng đến điều gì?</h1>
             <p class="subtitle">Mục tiêu Phát triển của Dự án</p>
         </div>
-        <div class="content">
-            <div class="goals-list">
-                <div class="goal-item">
-                    <div class="goal-icon"><i class="fas fa-chart-line"></i></div>
-                    <div class="goal-text">Nâng cao <span class="highlight">năng lực chuyên môn</span> & tư duy thực chiến.</div>
-                </div>
-                <div class="goal-item">
-                    <div class="goal-icon"><i class="fas fa-network-wired"></i></div>
-                    <div class="goal-text">Xây dựng <span class="highlight">mạng lưới kết nối</span> giá trị: Sinh viên - Chuyên gia - Doanh nghiệp.</div>
-                </div>
-                 <div class="goal-item">
-                    <div class="goal-icon"><i class="fas fa-lightbulb"></i></div>
-                    <div class="goal-text">Khơi dậy tinh thần <span class="highlight">sáng tạo, học hỏi</span> và khởi nghiệp công nghệ.</div>
-                </div>
-                 <div class="goal-item">
-                    <div class="goal-icon"><i class="fas fa-users-cog"></i></div>
-                    <div class="goal-text">Hình thành các <span class="highlight">đội nhóm lập trình nòng cốt</span>, sẵn sàng cho dự án IT.</div>
-                </div>
-                 <div class="goal-item">
-                    <div class="goal-icon"><i class="fas fa-seedling"></i></div>
-                    <div class="goal-text">Góp phần <span class="highlight">phát triển hệ sinh thái</span> công nghệ chung của Huế.</div>
-                </div>
-                 <div class="goal-item">
-                    <div class="goal-icon"><i class="fas fa-hands-helping"></i></div>
-                    <div class="goal-text">Tạo <span class="highlight">cơ hội thực tập và việc làm</span> chất lượng cho sinh viên IT.</div>
-                </div>
-            </div>
-            <div class="image-container">
-                <!-- Image related to goals/development -->
-                <img src="https://img.freepik.com/premium-photo/environmental-technology-concept-sustainable-development-goals-sdgs_984218-1701.jpg?w=996" alt="Mục tiêu phát triển" class="goal-image">
-            </div>
-        </div>
-    </div>
-    <!-- Slide 5 End -->
+        <div class="slide-content">
+             <div class="goal-item">
+                 <div class="goal-icon"><i class="fas fa-user-graduate"></i></div>
+                 <h3 class="goal-title">Nâng cao năng lực</h3>
+                 <p class="goal-desc">Giúp sinh viên thành thạo kỹ năng chuyên môn và tư duy thực chiến.</p>
+             </div>
+             <div class="goal-item">
+                 <div class="goal-icon"><i class="fas fa-link"></i></div>
+                 <h3 class="goal-title">Kết nối hiệu quả</h3>
+                 <p class="goal-desc">Tạo mạng lưới giá trị giữa sinh viên - chuyên gia - doanh nghiệp.</p>
+             </div>
+             <div class="goal-item">
+                 <div class="goal-icon"><i class="fas fa-lightbulb"></i></div>
+                 <h3 class="goal-title">Thúc đẩy đổi mới</h3>
+                 <p class="goal-desc">Khơi dậy tinh thần sáng tạo, học hỏi và khởi nghiệp công nghệ.</p>
+             </div>
+             <div class="goal-item">
+                 <div class="goal-icon"><i class="fas fa-users-cog"></i></div>
+                 <h3 class="goal-title">Xây dựng nguồn lực</h3>
+                 <p class="goal-desc">Hình thành đội nhóm lập trình nòng cốt, sẵn sàng cho các dự án IT.</p>
+             </div>
+             <div class="goal-item">
+                 <div class="goal-icon"><i class="fas fa-seedling"></i></div>
+                 <h3 class="goal-title">Phát triển hệ sinh thái</h3>
+                 <p class="goal-desc">Góp phần vào sự phát triển chung của cộng đồng công nghệ Huế.</p>
+             </div>
+             </div>
+    </section>
 
-    <!-- Slide 6: Tầm nhìn Dài hạn -->
-    <div id="slide6" class="slide">
-        <div class="background-overlay"></div>
-        <div class="content">
-            <h1 class="title">Tầm nhìn của Huế IT Space</h1>
-            <div class="vision-item">
-                <div class="vision-icon"><i class="fas fa-rocket"></i></div>
-                <p class="vision-text">Trở thành <span class="highlight">nền tảng ươm mầm và kết nối hàng đầu</span> cho cộng đồng lập trình tại Huế.</p>
-            </div>
-            <div class="vision-item">
-                 <div class="vision-icon"><i class="fas fa-project-diagram"></i></div>
-                <p class="vision-text">Xây dựng một <span class="highlight">hệ sinh thái công nghệ bền vững</span>, nơi tri thức, đổi mới và tinh thần cộng đồng cùng cộng hưởng phát triển.</p>
-            </div>
-            <div class="vision-item">
-                 <div class="vision-icon"><i class="fas fa-city"></i></div>
-                <p class="vision-text">Góp phần tích cực vào <span class="highlight">quá trình chuyển đổi số</span> của tỉnh Thừa Thiên Huế.</p>
-            </div>
-        </div>
-    </div>
-    <!-- Slide 6 End -->
+    <section class="slide" id="slide-6">
+         <div class="content-wrapper">
+             <h1 class="vision-title">Tầm nhìn của Huế IT Space</h1>
+             <div class="vision-item">
+                 <i class="fas fa-star"></i>Trở thành <span class="highlight">nền tảng ươm mầm và kết nối hàng đầu</span> cho cộng đồng lập trình tại Huế và khu vực.
+             </div>
+             <div class="vision-item">
+                 <i class="fas fa-network-wired"></i>Xây dựng một <span class="highlight">hệ sinh thái công nghệ bền vững</span>, nơi tri thức, đổi mới và tinh thần cộng đồng cùng cộng hưởng phát triển.
+             </div>
+             <div class="vision-item">
+                 <i class="fas fa-city"></i>Góp phần <span class="highlight">tích cực vào quá trình chuyển đổi số</span> của tỉnh Thừa Thiên Huế và nâng cao vị thế công nghệ của địa phương.
+             </div>
+         </div>
+    </section>
 
-    <!-- Slide 7: Đơn vị Đồng sáng lập & Đối tác Chiến lược -->
-    <div id="slide7" class="slide">
-        <div class="header">
+    <section class="slide" id="slide-7">
+        <div class="slide-header">
             <h1 class="title">Đồng hành cùng Huế IT Space</h1>
+            <p class="subtitle">Các Đơn vị Đồng sáng lập & Đối tác Chiến lược</p>
         </div>
-        <div class="content">
-            <div class="partners-grid">
-                <div class="partner-logo">
-                    <!-- Placeholder for JCI Hue Logo -->
-                    <div class="logo-placeholder-generic"><i class="fas fa-users"></i></div>
-                    <span>JCI Huế</span>
-                </div>
-                <div class="partner-logo">
-                    <!-- Placeholder for Hue Innovation Hub Logo -->
-                     <div class="logo-placeholder-generic"><i class="fas fa-lightbulb"></i></div>
-                    <span>Huế Innovation Hub</span>
-                </div>
-                <div class="partner-logo">
-                    <!-- Placeholder for SatoriWave AI Logo -->
-                     <div class="logo-placeholder-generic"><i class="fas fa-brain"></i></div>
-                    <span>SatoriWave AI</span>
-                </div>
-                <div class="partner-logo">
-                    <!-- Placeholder for Ment Media And Tech Logo -->
-                     <div class="logo-placeholder-generic"><i class="fas fa-desktop"></i></div>
-                    <span>Ment Media And Tech</span>
-                </div>
-            </div>
-            <p class="collaboration-text">
-                "Sự hợp tác dựa trên <span class="highlight">khát vọng chung</span> vì sự phát triển của <span class="highlight">hệ sinh thái công nghệ</span> tại Huế."
-            </p>
+        <div class="slide-content">
+             <p class="intro-text">
+                 Huế IT Space tự hào được khởi xướng và đồng hành bởi các tổ chức, doanh nghiệp uy tín, cùng chung khát vọng vì sự phát triển của hệ sinh thái công nghệ tại Huế.
+             </p>
+             <div class="partners-grid">
+                 <div class="partner-logo">
+                     <span class="logo-text" style="font-size: 1.5rem; color: #d32f2f;"><i class="fab fa-joomla"></i></span>
+                     <span class="logo-text">JCI Huế</span>
+                 </div>
+                 <div class="partner-logo">
+                     <span class="logo-text" style="font-size: 1.5rem; color: #1976d2;"><i class="fas fa-building"></i></span>
+                     <span class="logo-text">Huế Innovation Hub</span>
+                 </div>
+                 <div class="partner-logo">
+                      <span class="logo-text" style="font-size: 1.5rem; color: #388e3c;"><i class="fas fa-brain"></i></span>
+                      <span class="logo-text">SatoriWave AI</span>
+                 </div>
+                 <div class="partner-logo">
+                      <span class="logo-text" style="font-size: 1.5rem; color: #f57c00;"><i class="fas fa-cogs"></i></span>
+                      <span class="logo-text">Ment Media And Tech</span>
+                 </div>
+                 </div>
+             <p class="emphasis-text">
+                 "Sự hợp tác dựa trên <span class="highlight">khát vọng chung</span> vì sự phát triển của hệ sinh thái công nghệ tại Huế."
+             </p>
         </div>
-    </div>
-    <!-- Slide 7 End -->
+    </section>
 
-    <!-- Slide 8: Đội ngũ Điều hành -->
-    <div id="slide8" class="slide">
-        <div class="header">
+    <section class="slide" id="slide-8">
+         <div class="slide-header">
             <h1 class="title">Ban Điều hành Dự án</h1>
+            <p class="subtitle">Những người dẫn dắt tâm huyết</p>
         </div>
-        <div class="content">
-            <div class="team-member">
-                <!-- Placeholder for Truong Van Quoc Portrait -->
-                <div class="portrait-placeholder"><i class="fas fa-user"></i></div>
-                <h2 class="member-name">Ông Trương Văn Quốc</h2>
-                <p class="member-title">Trưởng dự án</p>
-                <p class="member-desc"><span class="highlight">CEO SatoriWave AI</span> - Với kinh nghiệm và tâm huyết trong lĩnh vực AI và phát triển cộng đồng.</p>
+        <div class="slide-content">
+            <div class="team-member-card">
+                 <div class="member-photo-placeholder"><i class="fas fa-user"></i></div>
+                 <h3 class="member-name">Ông Trương Văn Quốc</h3>
+                 <p class="member-title">Trưởng dự án</p>
+                 <p class="member-company">CEO SatoriWave AI</p>
             </div>
-            <div class="team-member">
-                <!-- Placeholder for Nguyen Van Sach Portrait -->
-                 <div class="portrait-placeholder"><i class="fas fa-user"></i></div>
-                <h2 class="member-name">Ông Nguyễn Văn Sách</h2>
-                <p class="member-title">Phó dự án</p>
-                <p class="member-desc"><span class="highlight">CEO Ment Media And Tech</span> - Chuyên gia về truyền thông, công nghệ và kết nối doanh nghiệp.</p>
+             <div class="team-member-card">
+                 <div class="member-photo-placeholder"><i class="fas fa-user-tie"></i></div>
+                 <h3 class="member-name">Ông Nguyễn Văn Sách</h3>
+                 <p class="member-title">Phó dự án</p>
+                 <p class="member-company">CEO Ment Media And Tech</p>
             </div>
-        </div>
-    </div>
-    <!-- Slide 8 End -->
+            </div>
+    </section>
 
-    <!-- Slide 9: Lời kêu gọi Hành động (Call to Action) -->
-    <div id="slide9" class="slide">
-        <div class="overlay"></div>
-        <div class="content">
-            <h1 class="title">Hãy Tham gia & Đồng hành cùng Huế IT Space!</h1>
-            <div class="cta-container">
-                <div class="cta-card">
-                    <h3 class="cta-target">Dành cho Sinh viên</h3>
-                    <p class="cta-text">Gia nhập cộng đồng Huế IT Space để học hỏi, phát triển kỹ năng và mở rộng cơ hội nghề nghiệp!</p>
-                    <a href="#" class="cta-button"><i class="fas fa-user-graduate mr-2"></i> Tìm hiểu thêm</a>
+    <section class="slide" id="slide-9">
+        <div class="content-wrapper">
+            <h1 class="cta-title">Hãy Tham gia & Đồng hành cùng Huế IT Space!</h1>
+            <div class="cta-sections">
+                <div class="cta-section">
+                     <h3 class="cta-target">Dành cho Sinh viên</h3>
+                     <p class="cta-message">Gia nhập cộng đồng Huế IT Space để học hỏi, phát triển kỹ năng và mở rộng cơ hội nghề nghiệp!</p>
                 </div>
-                <div class="cta-card">
-                    <h3 class="cta-target">Dành cho Chuyên gia/Mentor</h3>
-                    <p class="cta-text">Chia sẻ kinh nghiệm, dẫn dắt thế hệ trẻ và cùng xây dựng cộng đồng IT Huế vững mạnh!</p>
-                     <a href="#" class="cta-button"><i class="fas fa-chalkboard-teacher mr-2"></i> Đăng ký Mentor</a>
+                <div class="cta-section">
+                     <h3 class="cta-target">Dành cho Chuyên gia/Mentor</h3>
+                     <p class="cta-message">Chia sẻ kinh nghiệm, dẫn dắt thế hệ trẻ và cùng xây dựng cộng đồng IT Huế vững mạnh!</p>
                 </div>
-                 <div class="cta-card">
-                    <h3 class="cta-target">Dành cho Doanh nghiệp/Đối tác</h3>
-                    <p class="cta-text">Hợp tác triển khai dự án, tìm kiếm nhân tài và góp phần phát triển hệ sinh thái công nghệ địa phương!</p>
-                     <a href="#" class="cta-button"><i class="fas fa-handshake mr-2"></i> Liên hệ Hợp tác</a>
+                 <div class="cta-section">
+                     <h3 class="cta-target">Dành cho Doanh nghiệp/Đối tác</h3>
+                     <p class="cta-message">Hợp tác triển khai dự án, tìm kiếm nhân tài và góp phần phát triển hệ sinh thái công nghệ địa phương!</p>
                 </div>
             </div>
-             <div class="contact-info">
-                <a href="#"><i class="fab fa-facebook-square"></i> Fanpage</a> |
-                <a href="#"><i class="fas fa-envelope"></i> Email</a> |
-                <a href="#"><i class="fas fa-phone"></i> Hotline</a>
-            </div>
-        </div>
-    </div>
-    <!-- Slide 9 End -->
-
-    <!-- Slide 10: Hỏi & Đáp (Q&A) -->
-    <div id="slide10" class="slide">
-        <div class="content">
-            <div class="qa-icon">
-                <i class="fas fa-comments"></i>
-            </div>
-            <h1 class="title">Hỏi & Đáp</h1>
-            <p class="subtitle">Chúng tôi sẵn sàng giải đáp thắc mắc của bạn</p>
-        </div>
-    </div>
-    <!-- Slide 10 End -->
-
-    <!-- Slide 11: Lời Cảm ơn & Thông tin Liên hệ -->
-    <div id="slide11" class="slide">
-         <div class="gradient-overlay"></div>
-        <div class="content">
-            <h1 class="thank-you-text">Trân trọng Cảm ơn!</h1>
-            <p class="message">
-                Cảm ơn quý vị đã dành thời gian lắng nghe về dự án Huế IT Space. Chúng tôi rất mong nhận được sự quan tâm, tham gia và đồng hành của các bạn để cùng xây dựng một cộng đồng công nghệ vững mạnh tại Huế.
-            </p>
             <div class="contact-info">
-                <i class="fas fa-envelope"></i> contact@hueit.space |
-                <i class="fab fa-facebook-square"></i> fb.com/HueITSpace
+                <p><i class="fab fa-facebook-square"></i> <strong>Fanpage:</strong> <a href="https://facebook.com/hueitspace" target="_blank">facebook.com/hueitspace</a></p>
+                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:contact@hueit.space">contact@hueit.space</a></p>
+                 <p><i class="fas fa-globe"></i> <strong>Website:</strong> <a href="https://hueit.space" target="_blank">hueit.space</a> (nếu có)</p>
+                <p><i class="fas fa-phone"></i> <strong>Hotline:</strong> 0123 456 789 (Thay số thật)</p>
             </div>
-            <!-- Placeholder for final logo -->
-            <div class="logo-placeholder-final">Huế IT Space</div>
         </div>
-    </div>
-    <!-- Slide 11 End -->
+    </section>
+
+    <section class="slide" id="slide-10">
+        <h1 class="qa-title">Hỏi & Đáp</h1>
+        <p class="qa-subtitle">Dành thời gian cho các câu hỏi của bạn</p>
+        <div class="qa-icon">
+            <i class="fas fa-comments"></i>
+        </div>
+    </section>
+
+    <section class="slide" id="slide-11">
+         <div class="content-wrapper">
+             <h1 class="thank-you-title">Trân trọng Cảm ơn!</h1>
+             <p class="thank-you-text">
+                 Cảm ơn quý vị đã lắng nghe. Huế IT Space rất mong nhận được sự quan tâm, tham gia và đồng hành của tất cả mọi người để cùng nhau xây dựng một cộng đồng công nghệ vững mạnh tại Huế.
+             </p>
+             <div class="contact-info-final">
+                 <p><i class="fas fa-envelope"></i> <a href="mailto:contact@hueit.space">contact@hueit.space</a></p>
+                 <p><i class="fab fa-facebook-square"></i> <a href="https://facebook.com/hueitspace" target="_blank">facebook.com/hueitspace</a></p>
+             </div>
+             <div class="final-logo-placeholder">
+                 Huế IT Space
+                 </div>
+         </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            let currentSlideIndex = 0;
+            let isScrolling = false; // Flag để tránh xử lý scroll liên tục
+            let scrollTimeout;
+
+            // Hàm cuộn đến slide cụ thể
+            function scrollToSlide(index) {
+                if (index >= 0 && index < slides.length) {
+                    const targetSlide = slides[index];
+                    // Sử dụng offsetTop để lấy vị trí của slide so với đầu trang
+                    const targetScrollY = targetSlide.offsetTop;
+                    window.scrollTo({
+                        top: targetScrollY,
+                        behavior: 'smooth'
+                    });
+                    currentSlideIndex = index;
+                }
+            }
+
+            // Hàm cập nhật slide hiện tại dựa trên vị trí cuộn
+            function updateCurrentSlideOnScroll() {
+                clearTimeout(scrollTimeout); // Xóa timeout trước đó nếu có
+                // Chỉ thực hiện khi scroll dừng lại một chút
+                scrollTimeout = setTimeout(() => {
+                    const currentScrollY = window.scrollY;
+                    const windowHeight = window.innerHeight;
+                    let bestMatchIndex = 0;
+
+                    // Tìm slide nào đang hiển thị nhiều nhất trong viewport
+                    // Logic: slide nào có điểm giữa gần với điểm giữa viewport nhất
+                    let minDistance = Infinity;
+
+                    slides.forEach((slide, index) => {
+                        const slideTop = slide.offsetTop;
+                        const slideHeight = slide.offsetHeight;
+                        const slideCenter = slideTop + slideHeight / 2;
+                        const viewportCenter = currentScrollY + windowHeight / 2;
+                        const distance = Math.abs(slideCenter - viewportCenter);
+
+                        if (distance < minDistance) {
+                            minDistance = distance;
+                            bestMatchIndex = index;
+                        }
+                    });
+
+                    // Chỉ cập nhật nếu slide thực sự thay đổi
+                    if (currentSlideIndex !== bestMatchIndex) {
+                         console.log(`Scroll detected - Current slide updated to: ${bestMatchIndex + 1}`);
+                         currentSlideIndex = bestMatchIndex;
+                    }
+                    isScrolling = false; // Reset flag sau khi xử lý xong
+                }, 150); // Đợi 150ms sau khi dừng scroll mới cập nhật
+            }
+
+            // Xử lý sự kiện bàn phím
+            document.addEventListener('keydown', (event) => {
+                // Bỏ qua nếu đang nhập liệu trong input/textarea
+                if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {
+                    return;
+                }
+
+                let targetIndex = currentSlideIndex;
+                let shouldScroll = false;
+
+                switch (event.key) {
+                    case 'ArrowRight':
+                    case ' ': // Phím cách cũng là next
+                        event.preventDefault(); // Ngăn hành vi mặc định của spacebar (cuộn trang)
+                        if (currentSlideIndex < slides.length - 1) {
+                            targetIndex = currentSlideIndex + 1;
+                            shouldScroll = true;
+                        }
+                        break;
+                    case 'ArrowLeft':
+                        event.preventDefault();
+                        if (currentSlideIndex > 0) {
+                            targetIndex = currentSlideIndex - 1;
+                             shouldScroll = true;
+                        }
+                        break;
+                }
+
+                if (shouldScroll) {
+                    console.log(`Key pressed: ${event.key} - Scrolling to slide: ${targetIndex + 1}`);
+                    scrollToSlide(targetIndex);
+                }
+            });
+
+            // Xử lý sự kiện cuộn chuột (để cập nhật currentSlideIndex)
+            window.addEventListener('scroll', () => {
+                if (!isScrolling) {
+                    // Đặt isScrolling để debounce nhẹ việc tính toán
+                    // isScrolling = true; // Có thể không cần flag này nếu dùng timeout
+                    updateCurrentSlideOnScroll();
+                }
+            });
+
+             // Cập nhật slide hiện tại khi tải trang lần đầu (dựa vào vị trí cuộn ban đầu nếu có hash)
+             updateCurrentSlideOnScroll();
+             // Hoặc đơn giản là set về 0 nếu luôn muốn bắt đầu từ slide đầu tiên
+             // currentSlideIndex = 0;
+
+             console.log(`Slideshow initialized. Total slides: ${slides.length}. Current slide: ${currentSlideIndex + 1}`);
+        });
+    </script>
 
 </body>
 </html>
