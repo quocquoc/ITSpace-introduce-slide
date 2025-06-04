@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HUẾ IT SPACE - Trình chiếu</title>
+    <title>IT Space - Trình chiếu</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
@@ -36,97 +36,14 @@
 
         /* --- Slide 1 Styles (Title Slide) --- */
         #slide-1 {
-            background-color: #0a192f;
-            color: white;
-            text-align: center;
-            justify-content: center; /* Căn giữa nội dung theo chiều dọc */
-            align-items: center; /* Căn giữa nội dung theo chiều ngang */
+            position: relative;
+            overflow: hidden;
         }
         #slide-1 .background-image {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.4;
-            z-index: 0;
         }
-        #slide-1 .gradient-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(10, 25, 47, 0.95) 0%, rgba(46, 111, 192, 0.85) 100%);
-            z-index: 1;
-        }
-        #slide-1 .content {
-            position: relative;
-            z-index: 10;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        #slide-1 .main-title {
-            font-size: 7rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            background: linear-gradient(90deg, #ffffff 0%, #64b5f6 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent; /* Fallback */
-            -webkit-text-fill-color: transparent;
-            line-height: 1.2;
-            letter-spacing: 0.05em;
-            animation: fadeInDown 1.2s ease-out;
-        }
-        #slide-1 .subtitle {
-            font-size: 1.8rem;
-            font-weight: 300;
-            max-width: 80%;
-            margin-bottom: 3rem;
-            line-height: 1.4;
-            animation: fadeInUp 1.2s ease-out;
-        }
-        #slide-1 .logos-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 4rem;
-            gap: 2rem;
-            animation: fadeIn 2s ease-out;
-            flex-wrap: wrap; /* Cho phép logo xuống dòng nếu không đủ chỗ */
-        }
-        #slide-1 .logo-placeholder {
-            width: 100px;
-            height: 100px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 0.75rem;
-            text-align: center;
-            padding: 0.5rem;
-            transition: transform 0.3s ease;
-        }
-        #slide-1 .logo-placeholder:hover {
-            transform: scale(1.1);
-        }
-        #slide-1 .tech-icon {
-            position: absolute;
-            font-size: 3rem;
-            opacity: 0.2;
-            z-index: 5;
-            color: white;
-        }
-        #slide-1 .tech-icon:nth-child(1) { top: 15%; left: 10%; animation: float 8s infinite; }
-        #slide-1 .tech-icon:nth-child(2) { top: 25%; right: 15%; animation: float 9s infinite; }
-        #slide-1 .tech-icon:nth-child(3) { bottom: 20%; left: 20%; animation: float 7s infinite; }
-        #slide-1 .tech-icon:nth-child(4) { bottom: 25%; right: 10%; animation: float 10s infinite; }
 
         /* --- Slide 2 Styles (Context) --- */
         #slide-2 {
@@ -569,11 +486,11 @@
              max-width: 70%;
         }
         #slide-7 .partners-grid {
-             display: flex; /* Sử dụng flexbox để các logo tự căn chỉnh */
-             flex-wrap: wrap; /* Cho phép xuống dòng */
-             justify-content: center; /* Căn giữa các logo */
-             align-items: center; /* Căn các logo theo chiều dọc */
-             gap: 3rem; /* Khoảng cách giữa các logo */
+             display: grid;
+             grid-template-columns: repeat(4, 1fr); /* 4 columns */
+             gap: 2rem;
+             justify-content: center;
+             align-items: center;
              width: 100%;
              margin-bottom: 2.5rem;
         }
@@ -582,24 +499,27 @@
              flex-direction: column;
              align-items: center;
              justify-content: center;
-             width: 150px; /* Kích thước cố định cho logo container */
-             height: 150px;
-             padding: 1rem;
-             background-color: #f8f9fa; /* Nền nhẹ */
+             width: 250px;
+             height: 220px;
+             padding: 1.5rem;
+             background-color: #f8f9fa;
              border-radius: 12px;
              box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
              transition: all 0.3s ease;
+             margin: 0 auto;
         }
-        #slide-7 .partner-logo img { /* Nếu có ảnh logo */
-             max-width: 100%;
-             max-height: 80%; /* Để chừa chỗ cho tên */
+        #slide-7 .partner-logo img {
+             width: 180px;
+             height: 150px;
              object-fit: contain;
-             margin-bottom: 0.5rem;
+             margin-bottom: 1.2rem;
         }
-        #slide-7 .partner-logo .logo-text { /* Nếu chỉ có text */
+        #slide-7 .partner-logo .logo-text {
              font-weight: 600;
              color: #0a2463;
              font-size: 0.9rem;
+             text-align: center;
+             line-height: 1.2;
         }
          #slide-7 .partner-logo:hover {
              transform: scale(1.05);
@@ -625,61 +545,54 @@
         #slide-8 .slide-header .title { font-size: 2.5rem; }
         #slide-8 .slide-header .subtitle { font-size: 1.2rem; opacity: 0.9; }
         #slide-8 .slide-content {
-             justify-content: center; /* Căn giữa các thẻ thành viên */
-             align-items: center;
-             gap: 4rem; /* Khoảng cách lớn hơn giữa các thành viên */
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 2rem;
         }
         #slide-8 .team-member-card {
-             background: white;
-             border-radius: 16px;
-             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-             text-align: center;
-             padding: 2.5rem;
-             width: 320px; /* Kích thước cố định cho card */
-             transition: all 0.3s ease;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 2rem 1.5rem;
+            width: 100%;
+            transition: all 0.3s ease;
         }
-         #slide-8 .team-member-card:hover {
-             transform: translateY(-10px);
-             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-         }
+        /* Special positioning for the last two cards */
+        #slide-8 .team-member-card:nth-child(4) {
+            grid-column: 1 / span 1;
+        }
+        #slide-8 .team-member-card:nth-child(5) {
+            grid-column: 2 / span 1;
+        }
         #slide-8 .member-photo {
-             width: 160px; /* Kích thước ảnh */
-             height: 160px;
-             border-radius: 50%; /* Ảnh tròn */
-             object-fit: cover; /* Đảm bảo ảnh vừa vặn */
-             margin: 0 auto 1.5rem;
-             border: 5px solid #e3f2fd; /* Viền nhẹ cho ảnh */
-             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.5rem;
+            border: 5px solid #e3f2fd;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-         #slide-8 .member-photo-placeholder { /* Placeholder nếu không có ảnh */
-             width: 160px;
-             height: 160px;
-             border-radius: 50%;
-             background-color: #d0e6f8;
-             margin: 0 auto 1.5rem;
-             border: 5px solid #e3f2fd;
-             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-             display: flex;
-             justify-content: center;
-             align-items: center;
-             font-size: 4rem;
-             color: #0a2463;
-         }
         #slide-8 .member-name {
-             font-size: 1.5rem;
-             font-weight: 700;
-             color: #0a2463;
-             margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0a2463;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
         }
         #slide-8 .member-title {
-             font-size: 1rem;
-             font-weight: 500;
-             color: #1e88e5;
-             margin-bottom: 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1e88e5;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
         }
         #slide-8 .member-company {
-             font-size: 0.9rem;
-             color: #666;
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.2;
         }
 
         /* --- Slide 9 Styles (Call to Action) --- */
@@ -839,18 +752,18 @@
              text-align: center;
              color: #64b5f6; /* Màu icon */
          }
-        #slide-11 .final-logo-placeholder { /* Logo chính cuối cùng */
-             width: 120px;
-             height: 120px;
-             background-color: rgba(255, 255, 255, 0.1);
-             border-radius: 50%;
-             display: flex;
-             justify-content: center;
-             align-items: center;
-             font-size: 0.8rem;
-             text-align: center;
-             padding: 0.5rem;
-             margin-top: 1rem; /* Khoảng cách với contact */
+        #slide-11 .final-logo-placeholder {
+            width: 120px;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        #slide-11 .final-logo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         /* Animations */
@@ -880,30 +793,12 @@
 <body>
 
     <section class="slide" id="slide-1">
-        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Huế Technology Skyline" class="background-image">
-        <div class="gradient-overlay"></div>
-
-        <div class="tech-icon" style="z-index: 5;"><i class="fas fa-code"></i></div>
-        <div class="tech-icon" style="z-index: 5;"><i class="fas fa-database"></i></div>
-        <div class="tech-icon" style="z-index: 5;"><i class="fas fa-laptop-code"></i></div>
-        <div class="tech-icon" style="z-index: 5;"><i class="fas fa-network-wired"></i></div>
-
-        <div class="content">
-            <h1 class="main-title">HUẾ IT SPACE</h1>
-            <h2 class="subtitle">Kiến tạo Không gian Kết nối & Phát triển Cộng đồng Công nghệ Thông tin tại Huế</h2>
-
-            <div class="logos-container">
-                <div class="logo-placeholder">JCI Huế</div>
-                <div class="logo-placeholder">Huế Innovation Hub</div>
-                <div class="logo-placeholder">SatoriWave AI</div>
-                <div class="logo-placeholder">Ment Media And Tech</div>
-            </div>
-        </div>
+        <img src="itspace-cover.jpg" alt="IT Space Background" class="background-image" style="width: 100%; height: 100%; object-fit: cover;">
     </section>
 
     <section class="slide" id="slide-2">
         <div class="slide-header">
-            <h1 class="title">Vì sao Huế IT Space ra đời?</h1>
+            <h1 class="title">Vì sao IT Space ra đời?</h1>
             <p class="subtitle">Bối cảnh & Nhu cầu thực tiễn</p>
         </div>
 
@@ -948,14 +843,14 @@
 
     <section class="slide" id="slide-3">
         <div class="slide-header">
-            <h1 class="title">Huế IT Space là gì?</h1>
+            <h1 class="title">IT Space là gì?</h1>
             </div>
 
         <div class="slide-content">
             <div class="left-section">
                 <div class="what-is">
                     <i class="fas fa-laptop-code decoration"></i>
-                    <h2 class="what-is-title">Huế IT Space</h2>
+                    <h2 class="what-is-title">IT Space</h2>
                     <div class="what-is-content">
                         <p class="mb-4">Là <span class="highlight">dự án cộng đồng tiên phong</span>, được khởi xướng nhằm <span class="highlight">kiến tạo một không gian kết nối động lực</span> cho cộng đồng CNTT tại Huế.</p>
                         <p>Chúng tôi mang đến môi trường giao lưu, học tập và phát triển chuyên môn dành cho <span class="highlight">tất cả những người đam mê công nghệ thông tin</span> tại Huế.</p>
@@ -993,7 +888,7 @@
 
     <section class="slide" id="slide-4">
         <div class="slide-header">
-            <h1 class="title">Huế IT Space Mang đến những gì?</h1>
+            <h1 class="title">IT Space Mang đến những gì?</h1>
             <p class="subtitle">Các hoạt động trọng tâm xây dựng cộng đồng</p>
         </div>
 
@@ -1104,7 +999,7 @@
 
     <section class="slide" id="slide-6">
          <div class="content-wrapper">
-             <h1 class="vision-title">Tầm nhìn của Huế IT Space</h1>
+             <h1 class="vision-title">Tầm nhìn của IT Space</h1>
              <div class="vision-item">
                  <i class="fas fa-star"></i>Trở thành <span class="highlight">nền tảng ươm mầm và kết nối hàng đầu</span> cho cộng đồng lập trình tại Huế và khu vực.
              </div>
@@ -1119,31 +1014,47 @@
 
     <section class="slide" id="slide-7">
         <div class="slide-header">
-            <h1 class="title">Đồng hành cùng Huế IT Space</h1>
+            <h1 class="title">Đồng hành cùng IT Space</h1>
             <p class="subtitle">Các Đơn vị Đồng sáng lập & Đối tác Chiến lược</p>
         </div>
         <div class="slide-content">
              <p class="intro-text">
-                 Huế IT Space tự hào được khởi xướng và đồng hành bởi các tổ chức, doanh nghiệp uy tín, cùng chung khát vọng vì sự phát triển của hệ sinh thái công nghệ tại Huế.
+                 IT Space tự hào được khởi xướng và đồng hành bởi các tổ chức, doanh nghiệp uy tín, cùng chung khát vọng vì sự phát triển của hệ sinh thái công nghệ tại Huế.
              </p>
              <div class="partners-grid">
                  <div class="partner-logo">
-                     <span class="logo-text" style="font-size: 1.5rem; color: #d32f2f;"><i class="fab fa-joomla"></i></span>
-                     <span class="logo-text">JCI Huế</span>
+                     <img src="hue-innovation-hub-logo.png" alt="Partner 1">
+                     <span class="logo-text">HUE INNOVATION HUB</span>
                  </div>
                  <div class="partner-logo">
-                     <span class="logo-text" style="font-size: 1.5rem; color: #1976d2;"><i class="fas fa-building"></i></span>
-                     <span class="logo-text">Huế Innovation Hub</span>
+                     <img src="jci-hue-logo.png" alt="Partner 2">
+                     <span class="logo-text">JCI HUẾ</span>
                  </div>
                  <div class="partner-logo">
-                      <span class="logo-text" style="font-size: 1.5rem; color: #388e3c;"><i class="fas fa-brain"></i></span>
-                      <span class="logo-text">SatoriWave AI</span>
+                     <img src="clb-khoi-nghiep-hue-logo.png" alt="Partner 3">
+                     <span class="logo-text">CLB KHỞI NGHIỆP HUẾ</span>
                  </div>
                  <div class="partner-logo">
-                      <span class="logo-text" style="font-size: 1.5rem; color: #f57c00;"><i class="fas fa-cogs"></i></span>
-                      <span class="logo-text">Ment Media And Tech</span>
+                     <img src="satori-wave-ai-logo.png" alt="Partner 4">
+                     <span class="logo-text">SATORI WAVE AI</span>
                  </div>
+                 <div class="partner-logo">
+                     <img src="ment-media-tech-logo.png" alt="Partner 5">
+                     <span class="logo-text">MENT MEDIA & TECH</span>
                  </div>
+                 <div class="partner-logo">
+                     <img src="platinum-technology-logo.png" alt="Partner 6">
+                     <span class="logo-text">PLATINUM TECHNOLOGY</span>
+                 </div>
+                 <div class="partner-logo">
+                     <img src="x10-digital-vietnam-logo.png" alt="Partner 7">
+                     <span class="logo-text">X10 DIGITAL VIETNAM</span>
+                 </div>
+                 <div class="partner-logo">
+                     <img src="website-khoi-nghiep-logo.png" alt="Partner 8">
+                     <span class="logo-text">WEBSITE KHỞI NGHIỆP</span>
+                 </div>
+             </div>
              <p class="emphasis-text">
                  "Sự hợp tác dựa trên <span class="highlight">khát vọng chung</span> vì sự phát triển của hệ sinh thái công nghệ tại Huế."
              </p>
@@ -1157,27 +1068,45 @@
         </div>
         <div class="slide-content">
             <div class="team-member-card">
-                 <div class="member-photo-placeholder"><i class="fas fa-user"></i></div>
-                 <h3 class="member-name">Ông Trương Văn Quốc</h3>
+                 <img src="Quoc-avatar.jpg" alt="Trương Văn Quốc" class="member-photo">
+                 <h3 class="member-name">Trương Văn Quốc</h3>
                  <p class="member-title">Trưởng dự án</p>
                  <p class="member-company">CEO SatoriWave AI</p>
             </div>
              <div class="team-member-card">
-                 <div class="member-photo-placeholder"><i class="fas fa-user-tie"></i></div>
-                 <h3 class="member-name">Ông Nguyễn Văn Sách</h3>
+                <img src="sach-avatar.png" alt="Nguyễn Văn Sách" class="member-photo">
+                 <h3 class="member-name">Nguyễn Văn Sách</h3>
                  <p class="member-title">Phó dự án</p>
                  <p class="member-company">CEO Ment Media And Tech</p>
             </div>
+            <div class="team-member-card">
+                <img src="truong-avatar.png" alt="Trương Văn Trường" class="member-photo">
+                <h3 class="member-name">Trương Văn Trường</h3>
+                <p class="member-title">Cố vấn chuyên môn</p>
+                <p class="member-company">CEO Platinum Technology</p>
             </div>
+            <div class="team-member-card">
+                <img src="tung-avatar.png" alt="Nguyễn Đức Tùng" class="member-photo">
+                <h3 class="member-name">Nguyễn Đức Tùng</h3>
+                <p class="member-title">Cố vấn chuyên môn</p>
+                <p class="member-company">CEO X10 Digital Vietnam</p>
+            </div>
+            <div class="team-member-card">
+                <img src="dung-avatar.png" alt="Nguyễn Văn Dũng" class="member-photo">
+                <h3 class="member-name">Nguyễn Văn Dũng</h3>
+                <p class="member-title">Cố vấn chuyên môn</p>
+                <p class="member-company">Founder Website Khởi nghiệp</p>
+            </div>
+        </div>
     </section>
 
     <section class="slide" id="slide-9">
         <div class="content-wrapper">
-            <h1 class="cta-title">Hãy Tham gia & Đồng hành cùng Huế IT Space!</h1>
+            <h1 class="cta-title">Hãy Tham gia & Đồng hành cùng IT Space!</h1>
             <div class="cta-sections">
                 <div class="cta-section">
                      <h3 class="cta-target">Dành cho Sinh viên</h3>
-                     <p class="cta-message">Gia nhập cộng đồng Huế IT Space để học hỏi, phát triển kỹ năng và mở rộng cơ hội nghề nghiệp!</p>
+                     <p class="cta-message">Gia nhập cộng đồng IT Space để học hỏi, phát triển kỹ năng và mở rộng cơ hội nghề nghiệp!</p>
                 </div>
                 <div class="cta-section">
                      <h3 class="cta-target">Dành cho Chuyên gia/Mentor</h3>
@@ -1189,10 +1118,8 @@
                 </div>
             </div>
             <div class="contact-info">
-                <p><i class="fab fa-facebook-square"></i> <strong>Fanpage:</strong> <a href="https://facebook.com/hueitspace" target="_blank">facebook.com/hueitspace</a></p>
-                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:contact@hueit.space">contact@hueit.space</a></p>
-                 <p><i class="fas fa-globe"></i> <strong>Website:</strong> <a href="https://hueit.space" target="_blank">hueit.space</a> (nếu có)</p>
-                <p><i class="fas fa-phone"></i> <strong>Hotline:</strong> 0123 456 789 (Thay số thật)</p>
+                <p><i class="fab fa-facebook"></i> <strong>Facebook:</strong> <a href="https://www.facebook.com/profile.php?id=61576774679221" target="_blank">@ITSpace</a></p>
+                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:itspace@satoriwave.ai.vn">itspace@satoriwave.ai.vn</a></p>
             </div>
         </div>
     </section>
@@ -1209,15 +1136,15 @@
          <div class="content-wrapper">
              <h1 class="thank-you-title">Trân trọng Cảm ơn!</h1>
              <p class="thank-you-text">
-                 Cảm ơn quý vị đã lắng nghe. Huế IT Space rất mong nhận được sự quan tâm, tham gia và đồng hành của tất cả mọi người để cùng nhau xây dựng một cộng đồng công nghệ vững mạnh tại Huế.
+                 Cảm ơn quý vị đã lắng nghe. IT Space rất mong nhận được sự quan tâm, tham gia và đồng hành của tất cả mọi người để cùng nhau xây dựng một cộng đồng công nghệ vững mạnh tại Huế.
              </p>
              <div class="contact-info-final">
-                 <p><i class="fas fa-envelope"></i> <a href="mailto:contact@hueit.space">contact@hueit.space</a></p>
-                 <p><i class="fab fa-facebook-square"></i> <a href="https://facebook.com/hueitspace" target="_blank">facebook.com/hueitspace</a></p>
+                <p><i class="fab fa-facebook"></i> <a href="https://www.facebook.com/profile.php?id=61576774679221" target="_blank">@ITSpace</a></p>
+                 <p><i class="fas fa-envelope"></i> <a href="mailto:itspace@satoriwave.ai.vn">itspace@satoriwave.ai.vn</a></p>
              </div>
              <div class="final-logo-placeholder">
-                 Huế IT Space
-                 </div>
+                 <img src="ITSpace-logo.png" alt="IT Space Logo">
+             </div>
          </div>
     </section>
 
